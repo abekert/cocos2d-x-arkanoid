@@ -33,15 +33,15 @@
 
 	-(void) applicationDidFinishLaunching:(NSNotification *)aNotification
 	{
-		// create the window
-		// note that using NSResizableWindowMask causes the window to be a little
-		// smaller and therefore ipad graphics are not loaded
-        NSRect rect = NSMakeRect(200, 200, 480, 320);
-		window = [[NSWindow alloc] initWithContentRect:rect
+        CGFloat width = 1136;
+        CGFloat height = 640;
+        
+        NSSize screenSize = [[NSScreen mainScreen] visibleFrame].size;
+        NSRect windowFrame = NSMakeRect((screenSize.width - width) / 2, (screenSize.height - height) / 2, width, height);
+		window = [[NSWindow alloc] initWithContentRect:windowFrame
 			styleMask:( NSClosableWindowMask | NSTitledWindowMask )
 			backing:NSBackingStoreBuffered
 			defer:YES];
-        
         NSOpenGLPixelFormatAttribute attributes[] = {
             NSOpenGLPFADoubleBuffer,
             NSOpenGLPFADepthSize, 24,
@@ -53,15 +53,16 @@
 		
 		// allocate our GL view
 		// (isn't there already a shared EAGLView?)
-		glView = [[EAGLView alloc] initWithFrame:rect pixelFormat:pixelFormat];
+		glView = [[EAGLView alloc] initWithFrame:windowFrame pixelFormat:pixelFormat];
 
 		// set window parameters
 		[window becomeFirstResponder];
 		[window setContentView:glView];
-		[window setTitle:@"HelloCpp"];
+		[window setTitle:@"Arkanoid"];
 		[window makeKeyAndOrderFront:self];
 		[window setAcceptsMouseMovedEvents:NO];
 
+        [glView prepareOpenGL];
 		cocos2d::CCApplication::sharedApplication()->run();
 	}
 
