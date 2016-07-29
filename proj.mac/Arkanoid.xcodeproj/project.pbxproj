@@ -171,7 +171,6 @@
 		1AFAF8C416D3884900DB1158 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFAF8C116D3884900DB1158 /* CloseSelected.png */; };
 		1AFAF8C516D3884900DB1158 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFAF8C216D3884900DB1158 /* HelloWorld.png */; };
 		1AFAF8CA16D3886000DB1158 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AFAF8C616D3886000DB1158 /* AppDelegate.cpp */; };
-		1AFAF8CB16D3886000DB1158 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AFAF8C816D3886000DB1158 /* HelloWorldScene.cpp */; };
 		2964940C19518DD100BE20D8 /* CCActionTimeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2964940119518DD100BE20D8 /* CCActionTimeline.cpp */; };
 		2964940D19518DD100BE20D8 /* CCActionTimelineCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2964940319518DD100BE20D8 /* CCActionTimelineCache.cpp */; };
 		2964940E19518DD100BE20D8 /* CCFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2964940519518DD100BE20D8 /* CCFrame.cpp */; };
@@ -256,6 +255,11 @@
 		43B91F091949BB0500F7F815 /* CocoLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B91F071949BB0500F7F815 /* CocoLoader.cpp */; };
 		8C583FAD169DB6D500F63A10 /* CCEditBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C583FA8169DB6D500F63A10 /* CCEditBox.cpp */; };
 		8C583FAE169DB6D500F63A10 /* CCEditBoxImplMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8C583FAC169DB6D500F63A10 /* CCEditBoxImplMac.mm */; };
+		9DA274B11D410DFC000910C2 /* MainMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA274AF1D410DFC000910C2 /* MainMenuScene.cpp */; };
+		9DA274B51D4244FE000910C2 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA274B31D4244FE000910C2 /* GameScene.cpp */; };
+		9DA274BA1D44F418000910C2 /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA274B81D44F418000910C2 /* Level.cpp */; };
+		9DA274BD1D44F485000910C2 /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA274BB1D44F485000910C2 /* Block.cpp */; };
+		9DF604161D47A514006AD44A /* LevelPresenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DF604141D47A514006AD44A /* LevelPresenter.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -596,8 +600,6 @@
 		1AFAF8C216D3884900DB1158 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelloWorld.png; sourceTree = "<group>"; };
 		1AFAF8C616D3886000DB1158 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = ../Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		1AFAF8C716D3886000DB1158 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../Classes/AppDelegate.h; sourceTree = "<group>"; };
-		1AFAF8C816D3886000DB1158 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = ../Classes/HelloWorldScene.cpp; sourceTree = "<group>"; };
-		1AFAF8C916D3886000DB1158 /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = ../Classes/HelloWorldScene.h; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Arkanoid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arkanoid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2964940119518DD100BE20D8 /* CCActionTimeline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCActionTimeline.cpp; sourceTree = "<group>"; };
 		2964940219518DD100BE20D8 /* CCActionTimeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionTimeline.h; sourceTree = "<group>"; };
@@ -785,6 +787,16 @@
 		8C583FAA169DB6D500F63A10 /* CCEditBoxImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCEditBoxImpl.h; path = CCEditBox/CCEditBoxImpl.h; sourceTree = "<group>"; };
 		8C583FAB169DB6D500F63A10 /* CCEditBoxImplMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCEditBoxImplMac.h; path = CCEditBox/CCEditBoxImplMac.h; sourceTree = "<group>"; };
 		8C583FAC169DB6D500F63A10 /* CCEditBoxImplMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCEditBoxImplMac.mm; path = CCEditBox/CCEditBoxImplMac.mm; sourceTree = "<group>"; };
+		9DA274AF1D410DFC000910C2 /* MainMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainMenuScene.cpp; path = ../Classes/Scenes/MainMenuScene.cpp; sourceTree = "<group>"; };
+		9DA274B01D410DFC000910C2 /* MainMenuScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MainMenuScene.hpp; path = ../Classes/Scenes/MainMenuScene.hpp; sourceTree = "<group>"; };
+		9DA274B31D4244FE000910C2 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/Scenes/GameScene.cpp; sourceTree = "<group>"; };
+		9DA274B41D4244FE000910C2 /* GameScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GameScene.hpp; path = ../Classes/Scenes/GameScene.hpp; sourceTree = "<group>"; };
+		9DA274B81D44F418000910C2 /* Level.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Level.cpp; path = ../Classes/Gameplay/Models/Level.cpp; sourceTree = "<group>"; };
+		9DA274B91D44F418000910C2 /* Level.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Level.hpp; path = ../Classes/Gameplay/Models/Level.hpp; sourceTree = "<group>"; };
+		9DA274BB1D44F485000910C2 /* Block.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Block.cpp; path = ../Classes/Gameplay/Models/Block.cpp; sourceTree = "<group>"; };
+		9DA274BC1D44F485000910C2 /* Block.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Block.hpp; path = ../Classes/Gameplay/Models/Block.hpp; sourceTree = "<group>"; };
+		9DF604141D47A514006AD44A /* LevelPresenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelPresenter.cpp; path = ../Classes/Gameplay/Models/LevelPresenter.cpp; sourceTree = "<group>"; };
+		9DF604151D47A514006AD44A /* LevelPresenter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LevelPresenter.hpp; path = ../Classes/Gameplay/Models/LevelPresenter.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -813,10 +825,10 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9DA274B61D44F3B7000910C2 /* Gameplay */,
 				1AFAF8C616D3886000DB1158 /* AppDelegate.cpp */,
 				1AFAF8C716D3886000DB1158 /* AppDelegate.h */,
-				1AFAF8C816D3886000DB1158 /* HelloWorldScene.cpp */,
-				1AFAF8C916D3886000DB1158 /* HelloWorldScene.h */,
+				9DA274B21D410E02000910C2 /* Scenes */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1909,6 +1921,38 @@
 			name = CCEditBox;
 			sourceTree = "<group>";
 		};
+		9DA274B21D410E02000910C2 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				9DA274AF1D410DFC000910C2 /* MainMenuScene.cpp */,
+				9DA274B01D410DFC000910C2 /* MainMenuScene.hpp */,
+				9DA274B31D4244FE000910C2 /* GameScene.cpp */,
+				9DA274B41D4244FE000910C2 /* GameScene.hpp */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		9DA274B61D44F3B7000910C2 /* Gameplay */ = {
+			isa = PBXGroup;
+			children = (
+				9DA274B71D44F3D1000910C2 /* Models */,
+			);
+			name = Gameplay;
+			sourceTree = "<group>";
+		};
+		9DA274B71D44F3D1000910C2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9DA274B81D44F418000910C2 /* Level.cpp */,
+				9DA274B91D44F418000910C2 /* Level.hpp */,
+				9DF604141D47A514006AD44A /* LevelPresenter.cpp */,
+				9DF604151D47A514006AD44A /* LevelPresenter.hpp */,
+				9DA274BB1D44F485000910C2 /* Block.cpp */,
+				9DA274BC1D44F485000910C2 /* Block.hpp */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2009,11 +2053,13 @@
 				15C1574B1683159E00D239F2 /* b2ChainShape.cpp in Sources */,
 				15C1574C1683159E00D239F2 /* b2CircleShape.cpp in Sources */,
 				2964940C19518DD100BE20D8 /* CCActionTimeline.cpp in Sources */,
+				9DA274BA1D44F418000910C2 /* Level.cpp in Sources */,
 				37C62CF718E157C300D16FC4 /* UIImageView.cpp in Sources */,
 				15C1574D1683159E00D239F2 /* b2EdgeShape.cpp in Sources */,
 				15C1574E1683159E00D239F2 /* b2PolygonShape.cpp in Sources */,
 				37C62D0918E157C300D16FC4 /* ListViewReader.cpp in Sources */,
 				37C62CCD18E157C300D16FC4 /* CCActionEaseEx.cpp in Sources */,
+				9DF604161D47A514006AD44A /* LevelPresenter.cpp in Sources */,
 				37C62CF218E157C300D16FC4 /* UIListView.cpp in Sources */,
 				15C1574F1683159E00D239F2 /* b2BlockAllocator.cpp in Sources */,
 				15C157501683159E00D239F2 /* b2Draw.cpp in Sources */,
@@ -2039,6 +2085,7 @@
 				15C157601683159E00D239F2 /* b2EdgeAndCircleContact.cpp in Sources */,
 				37C62CD118E157C300D16FC4 /* CCActionNode.cpp in Sources */,
 				15C157611683159E00D239F2 /* b2EdgeAndPolygonContact.cpp in Sources */,
+				9DA274B11D410DFC000910C2 /* MainMenuScene.cpp in Sources */,
 				15C157621683159E00D239F2 /* b2PolygonAndCircleContact.cpp in Sources */,
 				15C157631683159E00D239F2 /* b2PolygonContact.cpp in Sources */,
 				37C62CE718E157C300D16FC4 /* CCComAudio.cpp in Sources */,
@@ -2147,6 +2194,7 @@
 				37C62D0C18E157C300D16FC4 /* ScrollViewReader.cpp in Sources */,
 				15C15930168315E500D239F2 /* CCScrollViewLoader.cpp in Sources */,
 				15C15931168315E500D239F2 /* CCSpriteLoader.cpp in Sources */,
+				9DA274BD1D44F485000910C2 /* Block.cpp in Sources */,
 				15C15932168315E500D239F2 /* CCControl.cpp in Sources */,
 				15C15933168315E500D239F2 /* CCControlButton.cpp in Sources */,
 				15C15934168315E500D239F2 /* CCControlColourPicker.cpp in Sources */,
@@ -2190,7 +2238,6 @@
 				37C62CF018E157C300D16FC4 /* UIHelper.cpp in Sources */,
 				8C583FAE169DB6D500F63A10 /* CCEditBoxImplMac.mm in Sources */,
 				1AFAF8CA16D3886000DB1158 /* AppDelegate.cpp in Sources */,
-				1AFAF8CB16D3886000DB1158 /* HelloWorldScene.cpp in Sources */,
 				1A40E75B1727BFC6006D4861 /* Animation.cpp in Sources */,
 				1A40E75C1727BFC6006D4861 /* AnimationState.cpp in Sources */,
 				1A40E75D1727BFC6006D4861 /* AnimationStateData.cpp in Sources */,
@@ -2201,6 +2248,7 @@
 				37C62CFD18E157C300D16FC4 /* UISlider.cpp in Sources */,
 				1A40E7611727BFC6006D4861 /* AttachmentLoader.cpp in Sources */,
 				1A40E7621727BFC6006D4861 /* Bone.cpp in Sources */,
+				9DA274B51D4244FE000910C2 /* GameScene.cpp in Sources */,
 				1A40E7631727BFC6006D4861 /* BoneData.cpp in Sources */,
 				37C62CE818E157C300D16FC4 /* CCComController.cpp in Sources */,
 				2964940F19518DD100BE20D8 /* CCNodeReader.cpp in Sources */,
@@ -2264,7 +2312,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -2309,7 +2356,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
@@ -2356,6 +2402,7 @@
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				VALID_ARCHS = "x86_64 i386";
@@ -2370,6 +2417,7 @@
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = macosx;
 				VALID_ARCHS = "x86_64 i386";
