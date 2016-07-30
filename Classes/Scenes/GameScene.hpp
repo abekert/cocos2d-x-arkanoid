@@ -11,6 +11,7 @@
 #include "cocos2d.h"
 
 class Level;
+class Raquet;
 
 class GameScene : public cocos2d::CCLayer
 {
@@ -28,7 +29,19 @@ public:
     
     // implement the "static node()" method manually
     CREATE_FUNC(GameScene);
-    
+    ~GameScene();
 private:
     Level *level;
+    Raquet *raquet;
+    
+    void setupLevel();
+    void setupRaquet();
+
+    bool raquetMovingEnabled;
+    
+    virtual bool ccTouchBegan(cocos2d::CCTouch *touch, cocos2d::CCEvent *event);
+    virtual void ccTouchMoved(cocos2d::CCTouch *touch, cocos2d::CCEvent *event);
+    virtual void ccTouchEnded(cocos2d::CCTouch *touch, cocos2d::CCEvent *event);
+    virtual void ccTouchCancelled(cocos2d::CCTouch *touch, cocos2d::CCEvent *event);
+
 };

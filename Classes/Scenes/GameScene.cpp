@@ -9,6 +9,7 @@
 #include "GameScene.hpp"
 #include "../Gameplay/Models/Level.hpp"
 #include "../Gameplay/Models/LevelPresenter.hpp"
+#include "../Gameplay/Models/Raquet.hpp"
 
 USING_NS_CC;
 
@@ -109,29 +110,43 @@ bool GameScene::init()
     // add the sprite as a child to this layer
     this->addChild(pSprite, 0);
     
-    Level::setupDefaults();
-    level = Level::createSampleLevel(8, 8);
-//    LevelPresenter::presentLevelMoveStyle(level, this, 1, 10);
-    auto presenter = new LevelPresenter;
-    presenter->presentLevelLineByLine(level, this, 2, 10);
-
+    
+    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, INT_MIN + 1, true);
+    
+    setupLevel();
+    setupRaquet();
+    
     return true;
 }
 
+void GameScene::setupLevel() {
+    Level::setupDefaults();
+    level = Level::createSampleLevel(8, 8);
+//        LevelPresenter::presentLevelMoveStyle(level, this, 1, 10);
+    auto presenter = new LevelPresenter;
+    presenter->presentLevelLineByLine(level, this, 2, 10);
+}
+
+void GameScene::setupRaquet() {
+    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+
+    raquet = Raquet::create(250, 20);
+    this->addChild(raquet);
+    raquet->setY(visibleSize.height * 0.12f);
+    raquet->setPosition(ccp(origin.x + visibleSize.width / 2, origin.y + raquet->getY()));
+    raquet->resetMoving();
+    raquetMovingEnabled = true;
+}
+
+GameScene::~GameScene() {
+    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+}
 
 void GameScene::menuCloseCallback(CCObject* pSender)
 {
     auto block = level->getBlock(1, 2);
     block->setVisible(!block->isVisible());
-    
-//#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-//    CCMessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
-//#else
-//    CCDirector::sharedDirector()->end();
-//#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-//    exit(0);
-//#endif
-//#endif
 }
 
 void GameScene::delayHideCallback(CCObject* pSender)
@@ -148,6 +163,33 @@ void GameScene::testAction(CCObject* pSender)
     block->runAction(rotate);
     CCLog("rotate");
 //    this->runAction(CCSequence::createWithTwoActions(wait, enable));
+}
+
+#pragma mark Touch Input
+
+bool GameScene::ccTouchBegan(cocos2d::CCTouch *touch, cocos2d::CCEvent *event) {
+    auto touchPosition = touch->getLocationInView();
+    
+    if (raquetMovingEnabled) {
+        raquet->handleTouchAtPosition(touchPosition);
+    }
+
+    return true;
+}
+
+void GameScene::ccTouchMoved(cocos2d::CCTouch *touch, cocos2d::CCEvent *event) {
+    auto touchPosition = touch->getLocationInView();
+    
+    if (raquetMovingEnabled) {
+        raquet->handleTouchAtPosition(touchPosition);
+    }
+}
+
+void GameScene::ccTouchEnded(cocos2d::CCTouch *touch, cocos2d::CCEvent *event) {
+    printf("ccTouchEnded");
+}
+void GameScene::ccTouchCancelled(cocos2d::CCTouch *touch, cocos2d::CCEvent *event) {
+    printf("ccTouchCancelled");
 }
 
 
