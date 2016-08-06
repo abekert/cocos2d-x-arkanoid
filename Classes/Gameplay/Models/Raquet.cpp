@@ -14,8 +14,9 @@ Raquet* Raquet::create(float width, float height) {
         raquet->autorelease();
         raquet->sprite = Raquet::createBlankSprite(ccc4(255, 255, 255, 255), CCSize(width, height));
         raquet->addChild(raquet->sprite);
+        raquet->size = CCSize(width, height);
         raquet->updateBordersX();
-        CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(raquet,0,false);
+        CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(raquet, 0, false);
 
         return raquet;
     }
@@ -83,4 +84,9 @@ void Raquet::updateBordersX() {
 void Raquet::fitPositionIntoBordersX() {
     float x = clampf(getPositionX(), xMin, xMax);
     setPositionX(x);
+}
+
+float Raquet::reflectionForcePercentX(CCPoint ballPosition) {
+    auto x = convertToNodeSpace(ballPosition).x;
+    return clampf(2 * x / size.width, -1, 1);
 }

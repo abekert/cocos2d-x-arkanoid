@@ -255,6 +255,10 @@
 		43B91F091949BB0500F7F815 /* CocoLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B91F071949BB0500F7F815 /* CocoLoader.cpp */; };
 		8C583FAD169DB6D500F63A10 /* CCEditBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C583FA8169DB6D500F63A10 /* CCEditBox.cpp */; };
 		8C583FAE169DB6D500F63A10 /* CCEditBoxImplMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8C583FAC169DB6D500F63A10 /* CCEditBoxImplMac.mm */; };
+		9D04153D1D4CA67300EED4B3 /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D04153B1D4CA67300EED4B3 /* Ball.cpp */; };
+		9D0415431D50C3A800EED4B3 /* loose-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D0415421D50C3A700EED4B3 /* loose-bottom.png */; };
+		9D0415461D50C5F500EED4B3 /* Backlight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D0415441D50C5F500EED4B3 /* Backlight.cpp */; };
+		9D6994A11D510E3B00C6BC4A /* GamePhysics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D69949F1D510E3B00C6BC4A /* GamePhysics.cpp */; };
 		9DA274B11D410DFC000910C2 /* MainMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA274AF1D410DFC000910C2 /* MainMenuScene.cpp */; };
 		9DA274B51D4244FE000910C2 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA274B31D4244FE000910C2 /* GameScene.cpp */; };
 		9DA274BA1D44F418000910C2 /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA274B81D44F418000910C2 /* Level.cpp */; };
@@ -788,6 +792,15 @@
 		8C583FAA169DB6D500F63A10 /* CCEditBoxImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCEditBoxImpl.h; path = CCEditBox/CCEditBoxImpl.h; sourceTree = "<group>"; };
 		8C583FAB169DB6D500F63A10 /* CCEditBoxImplMac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCEditBoxImplMac.h; path = CCEditBox/CCEditBoxImplMac.h; sourceTree = "<group>"; };
 		8C583FAC169DB6D500F63A10 /* CCEditBoxImplMac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CCEditBoxImplMac.mm; path = CCEditBox/CCEditBoxImplMac.mm; sourceTree = "<group>"; };
+		9D04153B1D4CA67300EED4B3 /* Ball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Ball.cpp; path = ../Classes/Gameplay/Models/Ball.cpp; sourceTree = "<group>"; };
+		9D04153C1D4CA67300EED4B3 /* Ball.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Ball.hpp; path = ../Classes/Gameplay/Models/Ball.hpp; sourceTree = "<group>"; };
+		9D0415421D50C3A700EED4B3 /* loose-bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loose-bottom.png"; sourceTree = "<group>"; };
+		9D0415441D50C5F500EED4B3 /* Backlight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Backlight.cpp; path = ../Classes/Gameplay/Environment/Backlight.cpp; sourceTree = "<group>"; };
+		9D0415451D50C5F500EED4B3 /* Backlight.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Backlight.hpp; path = ../Classes/Gameplay/Environment/Backlight.hpp; sourceTree = "<group>"; };
+		9D27639A1D56651D00321177 /* Snippets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Snippets.h; path = ../Classes/Snippets.h; sourceTree = "<group>"; };
+		9D69949F1D510E3B00C6BC4A /* GamePhysics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GamePhysics.cpp; path = ../Classes/Gameplay/GamePhysics.cpp; sourceTree = "<group>"; };
+		9D6994A01D510E3B00C6BC4A /* GamePhysics.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GamePhysics.hpp; path = ../Classes/Gameplay/GamePhysics.hpp; sourceTree = "<group>"; };
+		9D6994A21D510EBD00C6BC4A /* TagManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagManager.h; path = ../Classes/Gameplay/Models/TagManager.h; sourceTree = "<group>"; };
 		9DA274AF1D410DFC000910C2 /* MainMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainMenuScene.cpp; path = ../Classes/Scenes/MainMenuScene.cpp; sourceTree = "<group>"; };
 		9DA274B01D410DFC000910C2 /* MainMenuScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MainMenuScene.hpp; path = ../Classes/Scenes/MainMenuScene.hpp; sourceTree = "<group>"; };
 		9DA274B31D4244FE000910C2 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = ../Classes/Scenes/GameScene.cpp; sourceTree = "<group>"; };
@@ -832,6 +845,7 @@
 				1AFAF8C616D3886000DB1158 /* AppDelegate.cpp */,
 				1AFAF8C716D3886000DB1158 /* AppDelegate.h */,
 				9DA274B21D410E02000910C2 /* Scenes */,
+				9D27639A1D56651D00321177 /* Snippets.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1904,6 +1918,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9D0415421D50C3A700EED4B3 /* loose-bottom.png */,
 				1AFAF8C016D3884900DB1158 /* CloseNormal.png */,
 				1AFAF8C116D3884900DB1158 /* CloseSelected.png */,
 				1AFAF8C216D3884900DB1158 /* HelloWorld.png */,
@@ -1924,6 +1939,15 @@
 			name = CCEditBox;
 			sourceTree = "<group>";
 		};
+		9D0415471D50C5FA00EED4B3 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				9D0415441D50C5F500EED4B3 /* Backlight.cpp */,
+				9D0415451D50C5F500EED4B3 /* Backlight.hpp */,
+			);
+			name = Environment;
+			sourceTree = "<group>";
+		};
 		9DA274B21D410E02000910C2 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -1939,6 +1963,9 @@
 			isa = PBXGroup;
 			children = (
 				9DA274B71D44F3D1000910C2 /* Models */,
+				9D0415471D50C5FA00EED4B3 /* Environment */,
+				9D69949F1D510E3B00C6BC4A /* GamePhysics.cpp */,
+				9D6994A01D510E3B00C6BC4A /* GamePhysics.hpp */,
 			);
 			name = Gameplay;
 			sourceTree = "<group>";
@@ -1954,6 +1981,9 @@
 				9DA274BC1D44F485000910C2 /* Block.hpp */,
 				9DF604171D4B9C58006AD44A /* Raquet.cpp */,
 				9DF604181D4B9C58006AD44A /* Raquet.hpp */,
+				9D04153B1D4CA67300EED4B3 /* Ball.cpp */,
+				9D04153C1D4CA67300EED4B3 /* Ball.hpp */,
+				9D6994A21D510EBD00C6BC4A /* TagManager.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2035,6 +2065,7 @@
 				1AFAF8C316D3884900DB1158 /* CloseNormal.png in Resources */,
 				1AFAF8C416D3884900DB1158 /* CloseSelected.png in Resources */,
 				1AFAF8C516D3884900DB1158 /* HelloWorld.png in Resources */,
+				9D0415431D50C3A800EED4B3 /* loose-bottom.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2109,6 +2140,7 @@
 				15C157681683159E00D239F2 /* b2MouseJoint.cpp in Sources */,
 				15C157691683159E00D239F2 /* b2PrismaticJoint.cpp in Sources */,
 				37C62CDE18E157C300D16FC4 /* CCColliderDetector.cpp in Sources */,
+				9D04153D1D4CA67300EED4B3 /* Ball.cpp in Sources */,
 				37C62CE118E157C300D16FC4 /* CCDataReaderHelper.cpp in Sources */,
 				37C62CF318E157C300D16FC4 /* UIPageView.cpp in Sources */,
 				37C62CE018E157C300D16FC4 /* CCArmatureDefine.cpp in Sources */,
@@ -2179,6 +2211,7 @@
 				15C15921168315E500D239F2 /* CCControlButtonLoader.cpp in Sources */,
 				15C15922168315E500D239F2 /* CCControlLoader.cpp in Sources */,
 				15C15923168315E500D239F2 /* CCData.cpp in Sources */,
+				9D0415461D50C5F500EED4B3 /* Backlight.cpp in Sources */,
 				15C15924168315E500D239F2 /* CCLabelBMFontLoader.cpp in Sources */,
 				15C15925168315E500D239F2 /* CCLabelTTFLoader.cpp in Sources */,
 				15C15926168315E500D239F2 /* CCLayerColorLoader.cpp in Sources */,
@@ -2209,6 +2242,7 @@
 				15C15936168315E500D239F2 /* CCControlPotentiometer.cpp in Sources */,
 				37C62CF418E157C300D16FC4 /* UIScrollView.cpp in Sources */,
 				15C15937168315E500D239F2 /* CCControlSaturationBrightnessPicker.cpp in Sources */,
+				9D6994A11D510E3B00C6BC4A /* GamePhysics.cpp in Sources */,
 				37C62CD218E157C300D16FC4 /* CCActionObject.cpp in Sources */,
 				15C15938168315E500D239F2 /* CCControlSlider.cpp in Sources */,
 				37C62CD318E157C300D16FC4 /* CCArmatureAnimation.cpp in Sources */,

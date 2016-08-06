@@ -25,7 +25,12 @@ public:
     float getY() { return y; }
     void setY(float newY);
     
+    CCSize getContentSize() { return size; };
+    
     void updateBordersX();
+    
+    /// A value in range [-1, 1]
+    float reflectionForcePercentX(CCPoint ballPosition);
     
 private:
     CCSprite *sprite;
@@ -37,6 +42,8 @@ private:
     void fitPositionIntoBordersX();
 
     static CCSprite* createBlankSprite(const ccColor4B& color, CCSize size);
+    
+    CCSize size;
 
     void update(float dt);
 };

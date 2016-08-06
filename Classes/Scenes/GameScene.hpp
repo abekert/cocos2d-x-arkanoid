@@ -9,11 +9,15 @@
 #pragma once
 
 #include "cocos2d.h"
+#include "../Gameplay/GamePhysics.hpp"
 
 class Level;
 class Raquet;
+class Ball;
 
-class GameScene : public cocos2d::CCLayer
+class Backlight;
+
+class GameScene : public cocos2d::CCLayer, public GamePhysicsDelegate
 {
 public:
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
@@ -33,9 +37,24 @@ public:
 private:
     Level *level;
     Raquet *raquet;
+    Ball *ball;
+    GamePhysics *physics;
     
-    void setupLevel();
+    Backlight *backlight;
+    
+    void setupLevel(float presentationDuration);
     void setupRaquet();
+    void addBall();
+    void setupPhysics();
+    
+    void setupBacklight();
+    
+    void startGame(float delay);
+    void startGame();
+
+    void update(float dt);
+    
+    virtual void ballTouchedBottomEdge();
 
     bool raquetMovingEnabled;
     

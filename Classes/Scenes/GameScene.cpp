@@ -10,6 +10,9 @@
 #include "../Gameplay/Models/Level.hpp"
 #include "../Gameplay/Models/LevelPresenter.hpp"
 #include "../Gameplay/Models/Raquet.hpp"
+#include "../Gameplay/Models/Ball.hpp"
+
+#include "../Gameplay/Environment/Backlight.hpp"
 
 USING_NS_CC;
 
@@ -113,18 +116,26 @@ bool GameScene::init()
     
     CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, INT_MIN + 1, true);
     
-    setupLevel();
+    float duration = 2;
+    
+    setupLevel(duration);
     setupRaquet();
+    addBall();
+    setupBacklight();
+    setupPhysics();
+    
+    scheduleUpdate();
+    startGame(duration);
     
     return true;
 }
 
-void GameScene::setupLevel() {
+void GameScene::setupLevel(float presentationDuration) {
     Level::setupDefaults();
     level = Level::createSampleLevel(8, 8);
 //        LevelPresenter::presentLevelMoveStyle(level, this, 1, 10);
     auto presenter = new LevelPresenter;
-    presenter->presentLevelLineByLine(level, this, 2, 10);
+    presenter->presentLevelLineByLine(level, this, presentationDuration, 10);
 }
 
 void GameScene::setupRaquet() {
@@ -137,6 +148,25 @@ void GameScene::setupRaquet() {
     raquet->setPosition(ccp(origin.x + visibleSize.width / 2, origin.y + raquet->getY()));
     raquet->resetMoving();
     raquetMovingEnabled = true;
+}
+
+void GameScene::addBall() {
+    CCPoint position = raquet->getPosition();
+    position.y += 50;
+    ball = Ball::create(12);
+    ball->setPosition(position);
+    this->addChild(ball);
+}
+
+void GameScene::setupPhysics() {
+    physics = new GamePhysics(level, raquet, ball);
+    physics->delegate = this;
+}
+
+void GameScene::setupBacklight() {
+    backlight = Backlight::addTo(this, -100);
+    backlight->sprite->setColor(ccc3(255, 0, 0));
+    backlight->sprite->setOpacity(0);
 }
 
 GameScene::~GameScene() {
@@ -159,20 +189,34 @@ void GameScene::testAction(CCObject* pSender)
 {
     auto block = level->getBlock(1, 2);
     auto rotate = CCRotateBy::create(1, 180);
-//    auto move = CCMoveBy::create(1, ccp(0, 5));
     block->runAction(rotate);
     CCLog("rotate");
-//    this->runAction(CCSequence::createWithTwoActions(wait, enable));
+}
+
+void GameScene::startGame(float delay) {
+    auto wait = CCDelayTime::create(delay);
+    auto start = CCCallFunc::create(this, callfunc_selector(GameScene::startGame));
+    this->runAction(CCSequence::createWithTwoActions(wait, start));
+}
+
+void GameScene::startGame() {
+    CCPoint position = raquet->getPosition();
+    position.y += 50;
+    physics->setBallPosition(position);
+    physics->setBallSpeed(10);
+    physics->setBallDirectionBottom();
 }
 
 #pragma mark Touch Input
 
 bool GameScene::ccTouchBegan(cocos2d::CCTouch *touch, cocos2d::CCEvent *event) {
-    auto touchPosition = touch->getLocationInView();
+    auto touchPosition = touch->getLocation();
     
     if (raquetMovingEnabled) {
         raquet->handleTouchAtPosition(touchPosition);
     }
+
+//    physics->setBallPosition(touchPosition, true);
 
     return true;
 }
@@ -192,6 +236,21 @@ void GameScene::ccTouchCancelled(cocos2d::CCTouch *touch, cocos2d::CCEvent *even
     printf("ccTouchCancelled");
 }
 
+#pragma mark Update
+
+void GameScene::update(float dt) {
+    if (physics) {
+        physics->update(dt);
+    }
+}
+
+#pragma mark Physics Delegate
+
+void GameScene::ballTouchedBottomEdge() {
+    if (backlight) {
+        backlight->blink(1);
+    }
+}
 
 
 
