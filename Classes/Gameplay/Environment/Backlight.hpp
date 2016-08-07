@@ -21,8 +21,10 @@ public:
     
     void blink(float duration);
     void fadeIn(float duration);
+    void fadeTo(int opacity, float duration);
     void fadeOut(float duration);
     void setColor(float duration, GLubyte red, GLubyte green, GLubyte blue);
+    void setColor(float duration, ccColor3B color);
 
 protected:
     virtual bool init();

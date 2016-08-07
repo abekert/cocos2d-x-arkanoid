@@ -12,13 +12,12 @@
 #include "../Gameplay/GamePhysics.hpp"
 #include "../Gameplay/Models/Level.hpp"
 
-//class Level;
 class Raquet;
 class Ball;
-
+class Colors;
 class Backlight;
 
-class GameScene : public cocos2d::CCLayer, public GamePhysicsDelegate, public LevelCompleteDelegate
+class GameScene : public cocos2d::CCLayerColor, public GamePhysicsDelegate, public LevelCompleteDelegate
 {
 public:
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
@@ -41,6 +40,7 @@ private:
     Ball *ball;
     GamePhysics *physics;
     
+    Colors *colorPalette;
     Backlight *backlight;
     
     void setupLevel(float presentationDuration);

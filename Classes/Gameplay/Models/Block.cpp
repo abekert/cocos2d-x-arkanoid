@@ -8,12 +8,20 @@
 
 #include "Block.hpp"
 
+float Block::destroyAnimationDuration = 1;
+
 Block * Block::create(float width, float height) {
+    return create(width, height, ccc3(255, 255, 255));
+}
+
+Block * Block::create(float width, float height, ccColor3B color) {
     auto block = new Block();
     if (block && block->init()) {
         block->autorelease();
-        block->sprite = Block::createBlankSprite(ccc4(200, 255, 255, 255), CCSize(width, height));
-        block->size = CCSize(width, height);
+        auto color4b = ccc4(color.r, color.g, color.b, 255);
+        auto size = CCSize(width, height);
+        block->sprite = Block::createBlankSprite(color4b, size);
+        block->size = size;
         block->addChild(block->sprite);
         return block;
     }
@@ -65,7 +73,7 @@ void Block::setVisible(float delay, bool visible) {
 }
 
 bool Block::takeDamage() {
-    auto fadeOut = CCFadeTo::create(2, 0);
+    auto fadeOut = CCFadeTo::create(destroyAnimationDuration, 0);
     auto destroy = CCCallFunc::create(this, callfunc_selector(Block::setStateDestroyed));
     sprite->runAction(CCSequence::createWithTwoActions(fadeOut, destroy));
     

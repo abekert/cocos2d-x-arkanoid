@@ -12,6 +12,7 @@
 #include "../Gameplay/Models/Ball.hpp"
 
 #include "../Gameplay/Environment/Backlight.hpp"
+#include "../Gameplay/Environment/Colors.hpp"
 
 USING_NS_CC;
 
@@ -33,16 +34,24 @@ CCScene* GameScene::scene()
 // on "init" you need to initialize your instance
 bool GameScene::init()
 {
+    colorPalette = Colors::flatAndHipPalette();
+    auto bc = colorPalette->background;
     //////////////////////////////
     // 1. super init first
-    if ( !CCLayer::init() )
+    if ( !CCLayerColor::initWithColor(ccc4(bc.r, bc.g, bc.b, 255)))
+//        if ( !CCLayerColor::initWithColor(ccc4(0, 0, 0, 0)))
+//    if (!CCLayerRGBA::init())
     {
         return false;
     }
         
     CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, INT_MIN + 1, true);
     
-    float duration = 2;
+    float duration = 0.25f;
+    
+    setColor(colorPalette->background);
+//    this->setBlendFunc((ccBlendFunc) { GL_ONE, GL_ONE_MINUS_SRC_ALPHA });
+//    this->setColor(bc);
     
     setupLevel(duration);
     setupRaquet();
@@ -58,7 +67,7 @@ bool GameScene::init()
 
 void GameScene::setupLevel(float presentationDuration) {
     Level::setupDefaults();
-    level = Level::createSampleLevel(2, 2);
+    level = Level::createSimpleLevel(8, 8, colorPalette->blocks);
     level->delegate = this;
 //        LevelPresenter::presentLevelMoveStyle(level, this, 1, 10);
     auto presenter = new LevelPresenter;
@@ -69,8 +78,8 @@ void GameScene::setupRaquet() {
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
-    raquet = Raquet::create(250, 20);
-    this->addChild(raquet);
+    raquet = Raquet::create(250, 20, colorPalette->racquet);
+    this->addChild(raquet, 10);
     raquet->setY(visibleSize.height * 0.12f);
     raquet->setPosition(ccp(origin.x + visibleSize.width / 2, origin.y + raquet->getY()));
     raquet->resetMoving();
@@ -80,9 +89,9 @@ void GameScene::setupRaquet() {
 void GameScene::addBall() {
     CCPoint position = raquet->getPosition();
     position.y += 50;
-    ball = Ball::create(12);
+    ball = Ball::create(12, colorPalette->ball);
     ball->setPosition(position);
-    this->addChild(ball);
+    this->addChild(ball, 10);
 }
 
 void GameScene::setupPhysics() {
@@ -91,8 +100,8 @@ void GameScene::setupPhysics() {
 }
 
 void GameScene::setupBacklight() {
-    backlight = Backlight::addTo(this, -100);
-    backlight->sprite->setColor(ccc3(255, 0, 0));
+    backlight = Backlight::addTo(this, 1);
+    backlight->sprite->setColor(colorPalette->backlightFail);
     backlight->sprite->setOpacity(0);
 }
 
@@ -143,8 +152,6 @@ bool GameScene::ccTouchBegan(cocos2d::CCTouch *touch, cocos2d::CCEvent *event) {
         raquet->handleTouchAtPosition(touchPosition);
     }
 
-//    physics->setBallPosition(touchPosition, true);
-
     return true;
 }
 
@@ -157,10 +164,10 @@ void GameScene::ccTouchMoved(cocos2d::CCTouch *touch, cocos2d::CCEvent *event) {
 }
 
 void GameScene::ccTouchEnded(cocos2d::CCTouch *touch, cocos2d::CCEvent *event) {
-    printf("ccTouchEnded");
+//    printf("ccTouchEnded");
 }
 void GameScene::ccTouchCancelled(cocos2d::CCTouch *touch, cocos2d::CCEvent *event) {
-    printf("ccTouchCancelled");
+//    printf("ccTouchCancelled");
 }
 
 #pragma mark Update
@@ -188,8 +195,8 @@ void GameScene::levelComplete() {
         return;
     }
     
-    backlight->setColor(5, 0, 255, 0);
-    backlight->fadeIn(2);
+    backlight->fadeIn(3);
+    backlight->setColor(2, colorPalette->backlightSuccess);
 }
 
 

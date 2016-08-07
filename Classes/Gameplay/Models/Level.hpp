@@ -24,7 +24,7 @@ public:
     static float padding;
     
     static void setupDefaults();
-    static Level* createSampleLevel(int columnsNumber, int rowsNumber);
+    static Level* createSimpleLevel(int columnsNumber, int rowsNumber, ccColor3B color);
 
     Block* getBlock(int row, int column);
     void setBlock(Block *block, int row, int column);

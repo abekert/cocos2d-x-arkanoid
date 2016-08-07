@@ -56,18 +56,23 @@ void Backlight::blink(float duration) {
     sprite->runAction(blinkAction);
 }
 
-void Backlight::fadeIn(float duration) {
-    auto fadeIn = CCFadeTo::create(duration, 255);
-    fadeIn->setTag(fadeTag);
+void Backlight::fadeTo(int opacity, float duration) {
+    auto fade = CCFadeTo::create(duration, opacity);
+    fade->setTag(fadeTag);
     sprite->stopActionByTag(fadeTag);
-    sprite->runAction(fadeIn);
+    sprite->runAction(fade);
+}
+
+void Backlight::fadeIn(float duration) {
+    fadeTo(255, duration);
 }
 
 void Backlight::fadeOut(float duration) {
-    auto fadeOut = CCFadeTo::create(duration, 0);
-    fadeOut->setTag(fadeTag);
-    sprite->stopActionByTag(fadeTag);
-    sprite->runAction(fadeOut);
+    fadeTo(0, duration);
+}
+
+void Backlight::setColor(float duration, ccColor3B color) {
+    setColor(duration, color.r, color.g, color.b);
 }
 
 void Backlight::setColor(float duration, GLubyte red, GLubyte green, GLubyte blue) {

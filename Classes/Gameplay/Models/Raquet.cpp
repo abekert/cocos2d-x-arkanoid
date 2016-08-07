@@ -9,15 +9,21 @@
 #include "Raquet.hpp"
 
 Raquet* Raquet::create(float width, float height) {
+    return create(width, height, ccWHITE);
+}
+
+Raquet* Raquet::create(float width, float height, ccColor3B color) {
     auto raquet = new Raquet();
     if (raquet && raquet->init()) {
         raquet->autorelease();
-        raquet->sprite = Raquet::createBlankSprite(ccc4(255, 255, 255, 255), CCSize(width, height));
+        auto color4b = ccc4(color.r, color.g, color.b, 255);
+        auto size = CCSize(width, height);
+        raquet->sprite = Raquet::createBlankSprite(color4b, size);
         raquet->addChild(raquet->sprite);
-        raquet->size = CCSize(width, height);
+        raquet->size = size;
         raquet->updateBordersX();
         CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(raquet, 0, false);
-
+        
         return raquet;
     }
     
@@ -25,6 +31,7 @@ Raquet* Raquet::create(float width, float height) {
     raquet = NULL;
     return NULL;
 }
+
 
 CCSprite* Raquet::createBlankSprite(const ccColor4B& color, CCSize size)
 {
@@ -45,6 +52,10 @@ CCSprite* Raquet::createBlankSprite(const ccColor4B& color, CCSize size)
     free(buffer);
     
     return sprite;
+}
+
+Raquet::~Raquet() {
+    CCDirector::sharedDirector()->getScheduler()->unscheduleUpdateForTarget(this);
 }
 
 void Raquet::handleTouchAtPosition(CCPoint point) {

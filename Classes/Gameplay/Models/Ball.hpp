@@ -16,16 +16,14 @@ class Ball : public CCNode
 public:
     CREATE_FUNC(Ball);
     static Ball* create(float radius);
+    static Ball* create(float radius, ccColor3B color);
+    
     float getRadius() { return radius; }
     
     float speed;
-//    void setPosition(const CCPoint &position);
-//    void setPosition(const CCPoint &position, bool ignorePhysics);
-//    
-//    bool needsPhysicsRecalculation = false;
 private:
     CCDrawNode *sprite;
     float radius;
     
-    static CCDrawNode* circleOfRadius(float radius);
+    static CCDrawNode* circleOfRadius(float radius, ccColor3B color);
 };

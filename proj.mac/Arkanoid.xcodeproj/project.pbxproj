@@ -258,6 +258,7 @@
 		9D04153D1D4CA67300EED4B3 /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D04153B1D4CA67300EED4B3 /* Ball.cpp */; };
 		9D0415431D50C3A800EED4B3 /* loose-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D0415421D50C3A700EED4B3 /* loose-bottom.png */; };
 		9D0415461D50C5F500EED4B3 /* Backlight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D0415441D50C5F500EED4B3 /* Backlight.cpp */; };
+		9D27639E1D57484D00321177 /* Colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D27639C1D57484D00321177 /* Colors.cpp */; };
 		9D6994A11D510E3B00C6BC4A /* GamePhysics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D69949F1D510E3B00C6BC4A /* GamePhysics.cpp */; };
 		9DA274B11D410DFC000910C2 /* MainMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA274AF1D410DFC000910C2 /* MainMenuScene.cpp */; };
 		9DA274B51D4244FE000910C2 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA274B31D4244FE000910C2 /* GameScene.cpp */; };
@@ -798,6 +799,8 @@
 		9D0415441D50C5F500EED4B3 /* Backlight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Backlight.cpp; path = ../Classes/Gameplay/Environment/Backlight.cpp; sourceTree = "<group>"; };
 		9D0415451D50C5F500EED4B3 /* Backlight.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Backlight.hpp; path = ../Classes/Gameplay/Environment/Backlight.hpp; sourceTree = "<group>"; };
 		9D27639A1D56651D00321177 /* Snippets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Snippets.h; path = ../Classes/Snippets.h; sourceTree = "<group>"; };
+		9D27639C1D57484D00321177 /* Colors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Colors.cpp; path = ../Classes/Gameplay/Environment/Colors.cpp; sourceTree = "<group>"; };
+		9D27639D1D57484D00321177 /* Colors.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Colors.hpp; path = ../Classes/Gameplay/Environment/Colors.hpp; sourceTree = "<group>"; };
 		9D69949F1D510E3B00C6BC4A /* GamePhysics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GamePhysics.cpp; path = ../Classes/Gameplay/GamePhysics.cpp; sourceTree = "<group>"; };
 		9D6994A01D510E3B00C6BC4A /* GamePhysics.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GamePhysics.hpp; path = ../Classes/Gameplay/GamePhysics.hpp; sourceTree = "<group>"; };
 		9D6994A21D510EBD00C6BC4A /* TagManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagManager.h; path = ../Classes/Gameplay/Models/TagManager.h; sourceTree = "<group>"; };
@@ -1944,6 +1947,8 @@
 			children = (
 				9D0415441D50C5F500EED4B3 /* Backlight.cpp */,
 				9D0415451D50C5F500EED4B3 /* Backlight.hpp */,
+				9D27639C1D57484D00321177 /* Colors.cpp */,
+				9D27639D1D57484D00321177 /* Colors.hpp */,
 			);
 			name = Environment;
 			sourceTree = "<group>";
@@ -2307,6 +2312,7 @@
 				37C62CE218E157C300D16FC4 /* CCSpriteFrameCacheHelper.cpp in Sources */,
 				1A40E76C1727BFC6006D4861 /* SlotData.cpp in Sources */,
 				1A40E76D1727BFC6006D4861 /* spine-cocos2dx.cpp in Sources */,
+				9D27639E1D57484D00321177 /* Colors.cpp in Sources */,
 				37C62D0A18E157C300D16FC4 /* LoadingBarReader.cpp in Sources */,
 				1AB87042175E0AFA005D39BF /* CCSkeleton.cpp in Sources */,
 				1AB87043175E0AFA005D39BF /* CCSkeletonAnimation.cpp in Sources */,

@@ -14,8 +14,10 @@ USING_NS_CC;
 class Raquet : public CCNode
 {
 public:
-    CREATE_FUNC(Raquet);
+    ~Raquet();
+    
     static Raquet* create(float width, float height);
+    static Raquet* create(float width, float height, ccColor3B color);
     
     void handleTouchAtPosition(CCPoint point);
     void resetMoving() { desiredPoint = getPosition(); }

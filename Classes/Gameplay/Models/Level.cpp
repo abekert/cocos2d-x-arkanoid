@@ -19,7 +19,7 @@ void Level::setupDefaults() {
     padding = 4;
 }
 
-Level* Level::createSampleLevel(int columnsNumber, int rowsNumber) {
+Level* Level::createSimpleLevel(int columnsNumber, int rowsNumber, ccColor3B color) {
     auto level = Level::create();
     level->columnsNumber = columnsNumber;
     level->rowsNumber = rowsNumber;
@@ -38,7 +38,7 @@ Level* Level::createSampleLevel(int columnsNumber, int rowsNumber) {
     for (int row = 0; row < rowsNumber; row++) {
         x = startX;
         for (int column = 0; column < columnsNumber; column++) {
-            auto block = Block::create(blockWidth, blocksHeight);
+            auto block = Block::create(blockWidth, blocksHeight, color);
             block->delegate = level;
             block->setPosition(ccp(x, y));
             level->setBlock(block, row, column);
@@ -57,7 +57,6 @@ void Level::initBlocksArray(int rowsNumber, int columnsNumber) {
     this->columnsNumber = columnsNumber;
     this->rowsNumber = rowsNumber;
     blocksLength = columnsNumber * rowsNumber;
-//    blocks = new Block[blocksLength];
     blocks = *new std::vector<Block*>(blocksLength);
 }
 
@@ -67,7 +66,6 @@ Block* Level::getBlock(int row, int column) {
         CCLOGERROR("Wrong block index: %d. Must be in range [0..%d]", index, blocksLength - 1);
         return NULL;
     }
-//    return &blocks[index];
     return blocks.at(index);
 }
 
@@ -78,7 +76,6 @@ void Level::setBlock(Block *block, int row, int column) {
         return;
     }
     
-//    Block* existingBlock = &blocks[index];
     Block* existingBlock = blocks.at(index);
     if (existingBlock != NULL) {
         existingBlock->release();

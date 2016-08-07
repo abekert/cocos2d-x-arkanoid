@@ -21,8 +21,10 @@ public:
 class Block : public CCNode
 {
 public:
+    static float destroyAnimationDuration;
     CREATE_FUNC(Block);
     static Block *create(float width, float height);
+    static Block *create(float width, float height, ccColor3B color);
     void setVisible();
     void setVisible(bool visible);
     void setVisible(float delay, bool visible = true);
