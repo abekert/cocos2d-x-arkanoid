@@ -20,6 +20,9 @@ public:
     CCSprite *sprite;
     
     void blink(float duration);
+    void fadeIn(float duration);
+    void fadeOut(float duration);
+    void setColor(float duration, GLubyte red, GLubyte green, GLubyte blue);
 
 protected:
     virtual bool init();

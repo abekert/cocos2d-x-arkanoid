@@ -147,17 +147,9 @@ void GamePhysics::beginContactBallAndBlock(b2Body *ballBody, Ball *ball, b2Body 
 
 void GamePhysics::beginContactBallAndRaquet(b2Body *ballBody, Ball *ball, b2Body *raquetBody, Raquet *raquet) {
 
-    auto ballPosition = ball->getPosition();
-    auto ballParent = ball->getParent();
-    if (ballParent) {
-        ballPosition = ballParent->convertToWorldSpace(ballPosition);
-    }
+    auto ballPosition = getWorldPosition(ball);
+    auto raquetPosition = getWorldPosition(raquet);
     
-    auto raquetPosition = raquet->getPosition();
-    auto raquetParent = raquet->getParent();
-    if (raquetParent) {
-        raquetPosition = raquetParent->convertToWorldSpace(raquetPosition);
-    }
     if (ballPosition.y < raquetPosition.y + raquet->getContentSize().height / 2 + ball->getRadius() / 2) {
         CCLOG("No special raquet-ball processing");
         return;
@@ -258,7 +250,6 @@ b2Body * GamePhysics::addBall(Ball *ball) {
 
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody; // Dynamic collision
-    
     bodyDef.position.Set(ball->getPosition().x/SCALE_RATIO,ball->getPosition().y/SCALE_RATIO);
     
     //ballBody
@@ -276,7 +267,7 @@ b2Body * GamePhysics::addBall(Ball *ball) {
 
 void GamePhysics::setBallPosition(const cocos2d::CCPoint &position, bool resetForce) {
     ball->setPosition(position);
-    auto worldPosition = ball->getParent()->convertToWorldSpace(position);
+    auto worldPosition = getWorldPosition(ball);
 
     ballBody->SetTransform(b2Vec2(worldPosition.x / SCALE_RATIO, worldPosition.y / SCALE_RATIO), ballBody->GetAngle());
     if (resetForce) {
@@ -314,7 +305,7 @@ void GamePhysics::setupRaquet() {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     
-    auto position = raquet->getPosition();
+    auto position = getWorldPosition(raquet);
     bodyDef.position.Set(position.x / SCALE_RATIO, position.y / SCALE_RATIO);
     
     //ballBody
@@ -328,7 +319,7 @@ void GamePhysics::setupRaquet() {
 }
 
 void GamePhysics::updateRaquetPosition() {
-    auto position = raquet->getPosition();
+    auto position = getWorldPosition(raquet);
     raquetBody->SetTransform(b2Vec2(position.x / SCALE_RATIO, position.y / SCALE_RATIO), raquetBody->GetAngle());
 }
 
@@ -354,7 +345,7 @@ void GamePhysics::setupLevel() {
             b2BodyDef bodyDef;
             bodyDef.type = b2_dynamicBody; // Dynamic collision
     
-            auto position = block->getParent()->convertToWorldSpace(block->getPosition());
+            auto position = getWorldPosition(block);
             bodyDef.position.Set(position.x / SCALE_RATIO, position.y / SCALE_RATIO);
             
             //ballBody

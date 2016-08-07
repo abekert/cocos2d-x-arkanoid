@@ -11,7 +11,12 @@
 #include "cocos2d.h"
 #include "Block.hpp"
 
-class Level : public cocos2d::CCNode
+class LevelCompleteDelegate {
+public:
+    virtual void levelComplete() { CCLOG("Level Complete"); }
+};
+
+class Level : public cocos2d::CCNode, public BlockStatesDelegate
 {
 public:
     static float levelWidth;
@@ -28,11 +33,17 @@ public:
     
     void setVisible(bool visible = true);
     void setRowVisible(int row, bool visible = true);
+    
+    void blockChangedState(Block *block);
+
+    LevelCompleteDelegate *delegate;
+    
 private:
     std::vector<Block*> blocks;
     int blocksLength = 0;
     int columnsNumber = 0;
     int rowsNumber = 0;
+    int blocksLeft = 0;
     
     CREATE_FUNC(Level);
     

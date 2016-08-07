@@ -10,14 +10,15 @@
 
 #include "cocos2d.h"
 #include "../Gameplay/GamePhysics.hpp"
+#include "../Gameplay/Models/Level.hpp"
 
-class Level;
+//class Level;
 class Raquet;
 class Ball;
 
 class Backlight;
 
-class GameScene : public cocos2d::CCLayer, public GamePhysicsDelegate
+class GameScene : public cocos2d::CCLayer, public GamePhysicsDelegate, public LevelCompleteDelegate
 {
 public:
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
@@ -55,6 +56,7 @@ private:
     void update(float dt);
     
     virtual void ballTouchedBottomEdge();
+    void levelComplete();
 
     bool raquetMovingEnabled;
     

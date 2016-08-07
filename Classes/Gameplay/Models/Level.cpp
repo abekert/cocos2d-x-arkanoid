@@ -23,6 +23,7 @@ Level* Level::createSampleLevel(int columnsNumber, int rowsNumber) {
     auto level = Level::create();
     level->columnsNumber = columnsNumber;
     level->rowsNumber = rowsNumber;
+    level->blocksLeft = rowsNumber * columnsNumber;
     CCLog("Create sample level %dx%d", rowsNumber, columnsNumber);
 
     float blockWidth = ((levelWidth + padding) / columnsNumber) - padding;
@@ -38,6 +39,7 @@ Level* Level::createSampleLevel(int columnsNumber, int rowsNumber) {
         x = startX;
         for (int column = 0; column < columnsNumber; column++) {
             auto block = Block::create(blockWidth, blocksHeight);
+            block->delegate = level;
             block->setPosition(ccp(x, y));
             level->setBlock(block, row, column);
             level->addChild(block);
@@ -102,5 +104,19 @@ void Level::setRowVisible(int row, bool visible) {
             continue;
         }
         block->setVisible(visible);
+    }
+}
+
+// MARK: BlockStatesDelegate
+
+void Level::blockChangedState(Block *block) {
+    if (block->getState() == Block::StateDestroyed) {
+        blocksLeft -= 1;
+    }
+    
+    CCLOG("Blocks left: %d", blocksLeft);
+    
+    if (blocksLeft <= 0 && delegate) {
+        delegate->levelComplete();
     }
 }

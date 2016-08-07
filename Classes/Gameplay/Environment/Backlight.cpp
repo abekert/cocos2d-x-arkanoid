@@ -8,6 +8,10 @@
 
 #include "Backlight.hpp"
 
+static const int fadeTag = 1;
+static const int colorTag = 2;
+
+
 Backlight* Backlight::addTo(CCNode *layer, int zOrder) {
     auto backlight = new Backlight();
     if (backlight && backlight->init()) {
@@ -45,11 +49,31 @@ void Backlight::blink(float duration) {
     auto fadeIn = CCFadeTo::create(duration * 0.2f, 255);
     auto wait = CCDelayTime::create(duration * 0.2f);
     auto fadeOut = CCFadeOut::create(duration * 0.6f);
-    auto sequence = CCSequence::create(fadeIn, wait, fadeOut, NULL);
+    auto blinkAction = CCSequence::create(fadeIn, wait, fadeOut, NULL);
+    blinkAction->setTag(fadeTag);
     
-    sprite->stopAllActions();
-    sprite->runAction(sequence);
+    sprite->stopActionByTag(fadeTag);
+    sprite->runAction(blinkAction);
 }
 
+void Backlight::fadeIn(float duration) {
+    auto fadeIn = CCFadeTo::create(duration, 255);
+    fadeIn->setTag(fadeTag);
+    sprite->stopActionByTag(fadeTag);
+    sprite->runAction(fadeIn);
+}
 
+void Backlight::fadeOut(float duration) {
+    auto fadeOut = CCFadeTo::create(duration, 0);
+    fadeOut->setTag(fadeTag);
+    sprite->stopActionByTag(fadeTag);
+    sprite->runAction(fadeOut);
+}
+
+void Backlight::setColor(float duration, GLubyte red, GLubyte green, GLubyte blue) {
+    auto colorize = CCTintTo::create(duration, red, green, blue);
+    colorize->setTag(colorTag);
+    sprite->stopActionByTag(colorTag);
+    sprite->runAction(colorize);
+}
 
