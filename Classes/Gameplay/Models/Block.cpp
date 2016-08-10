@@ -8,6 +8,8 @@
 
 #include "Block.hpp"
 
+#include "../../Extensions/ColorSprite.hpp"
+
 float Block::destroyAnimationDuration = 1;
 
 Block * Block::create(float width, float height) {
@@ -20,7 +22,7 @@ Block * Block::create(float width, float height, ccColor3B color) {
         block->autorelease();
         auto color4b = ccc4(color.r, color.g, color.b, 255);
         auto size = CCSize(width, height);
-        block->sprite = Block::createBlankSprite(color4b, size);
+        block->sprite = ColorSprite::create(color4b, size);
         block->size = size;
         block->addChild(block->sprite);
         return block;
@@ -29,27 +31,6 @@ Block * Block::create(float width, float height, ccColor3B color) {
     delete block;
     block = NULL;
     return NULL;
-}
-
-CCSprite * Block::createBlankSprite(const ccColor4B& color, CCSize size)
-{
-    GLubyte *buffer = (GLubyte *)malloc(sizeof(GLubyte)*4);
-    buffer[0] = color.r;
-    buffer[1] = color.g;
-    buffer[2] = color.b;
-    buffer[3] = color.a;
-    
-    auto tex = new CCTexture2D();
-    tex->initWithData(buffer, kCCTexture2DPixelFormat_RGBA8888, 1, 1, size);
-    
-    auto sprite = CCSprite::create();
-    sprite->setTexture(tex);
-    sprite->setTextureRect(CCRect(0, 0, size.width, size.height));
-    
-    tex->release();
-    free(buffer);
-    
-    return sprite;
 }
 
 void Block::setVisible() {
@@ -74,6 +55,7 @@ void Block::setVisible(float delay, bool visible) {
 
 bool Block::takeDamage() {
     auto fadeOut = CCFadeTo::create(destroyAnimationDuration, 0);
+    setState(StateDestroyedPlayingAnimation);
     auto destroy = CCCallFunc::create(this, callfunc_selector(Block::setStateDestroyed));
     sprite->runAction(CCSequence::createWithTwoActions(fadeOut, destroy));
     
@@ -81,5 +63,5 @@ bool Block::takeDamage() {
 }
 
 void Block::fadeOut(float duration) {
-    sprite->runAction(CCFadeTo::create(duration, duration));
+    sprite->runAction(CCFadeTo::create(duration, 0));
 }

@@ -11,12 +11,14 @@
 float Level::levelWidth;
 float Level::levelHeigth;
 float Level::padding;
+float Level::topBorder;
 
 void Level::setupDefaults() {
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     levelWidth = visibleSize.width * 0.90f;
     levelHeigth = visibleSize.height * 0.5f;
-    padding = 4;
+    padding = visibleSize.height * 0.01f;
+    topBorder = visibleSize.width * 0.05f;
 }
 
 Level* Level::createSimpleLevel(int columnsNumber, int rowsNumber, ccColor3B color) {
@@ -32,7 +34,7 @@ Level* Level::createSimpleLevel(int columnsNumber, int rowsNumber, ccColor3B col
 
     float startX = -levelWidth / 2 + blockWidth / 2;
     float x = startX;
-    float y = -(blocksHeight / 2) - padding;
+    float y = -(blocksHeight / 2) - topBorder;
     
     level->initBlocksArray(rowsNumber, columnsNumber);
     for (int row = 0; row < rowsNumber; row++) {
@@ -107,13 +109,19 @@ void Level::setRowVisible(int row, bool visible) {
 // MARK: BlockStatesDelegate
 
 void Level::blockChangedState(Block *block) {
-    if (block->getState() == Block::StateDestroyed) {
+    if (block->getState() == Block::StateDestroyedPlayingAnimation) {
         blocksLeft -= 1;
-    }
     
-    CCLOG("Blocks left: %d", blocksLeft);
-    
-    if (blocksLeft <= 0 && delegate) {
-        delegate->levelComplete();
+        CCLOG("Blocks left: %d", blocksLeft);
+        
+        if (!delegate) {
+            return;
+        }
+        
+        delegate->destroyedBlock();
+        
+        if (blocksLeft <= 0) {
+            delegate->levelComplete();
+        }
     }
 }

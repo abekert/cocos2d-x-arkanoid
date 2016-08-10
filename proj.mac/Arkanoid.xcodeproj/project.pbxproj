@@ -259,6 +259,8 @@
 		9D0415431D50C3A800EED4B3 /* loose-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D0415421D50C3A700EED4B3 /* loose-bottom.png */; };
 		9D0415461D50C5F500EED4B3 /* Backlight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D0415441D50C5F500EED4B3 /* Backlight.cpp */; };
 		9D27639E1D57484D00321177 /* Colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D27639C1D57484D00321177 /* Colors.cpp */; };
+		9D2763D61D57B93C00321177 /* HUD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D2763D41D57B93C00321177 /* HUD.cpp */; };
+		9D2763D91D5A113600321177 /* ColorSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D2763D71D5A113600321177 /* ColorSprite.cpp */; };
 		9D6994A11D510E3B00C6BC4A /* GamePhysics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D69949F1D510E3B00C6BC4A /* GamePhysics.cpp */; };
 		9DA274B11D410DFC000910C2 /* MainMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA274AF1D410DFC000910C2 /* MainMenuScene.cpp */; };
 		9DA274B51D4244FE000910C2 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA274B31D4244FE000910C2 /* GameScene.cpp */; };
@@ -801,6 +803,10 @@
 		9D27639A1D56651D00321177 /* Snippets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Snippets.h; path = ../Classes/Snippets.h; sourceTree = "<group>"; };
 		9D27639C1D57484D00321177 /* Colors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Colors.cpp; path = ../Classes/Gameplay/Environment/Colors.cpp; sourceTree = "<group>"; };
 		9D27639D1D57484D00321177 /* Colors.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Colors.hpp; path = ../Classes/Gameplay/Environment/Colors.hpp; sourceTree = "<group>"; };
+		9D2763D41D57B93C00321177 /* HUD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HUD.cpp; path = ../Classes/Gameplay/Environment/HUD.cpp; sourceTree = "<group>"; };
+		9D2763D51D57B93C00321177 /* HUD.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HUD.hpp; path = ../Classes/Gameplay/Environment/HUD.hpp; sourceTree = "<group>"; };
+		9D2763D71D5A113600321177 /* ColorSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ColorSprite.cpp; path = ../Classes/Extensions/ColorSprite.cpp; sourceTree = "<group>"; };
+		9D2763D81D5A113600321177 /* ColorSprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ColorSprite.hpp; path = ../Classes/Extensions/ColorSprite.hpp; sourceTree = "<group>"; };
 		9D69949F1D510E3B00C6BC4A /* GamePhysics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GamePhysics.cpp; path = ../Classes/Gameplay/GamePhysics.cpp; sourceTree = "<group>"; };
 		9D6994A01D510E3B00C6BC4A /* GamePhysics.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GamePhysics.hpp; path = ../Classes/Gameplay/GamePhysics.hpp; sourceTree = "<group>"; };
 		9D6994A21D510EBD00C6BC4A /* TagManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagManager.h; path = ../Classes/Gameplay/Models/TagManager.h; sourceTree = "<group>"; };
@@ -849,6 +855,7 @@
 				1AFAF8C716D3886000DB1158 /* AppDelegate.h */,
 				9DA274B21D410E02000910C2 /* Scenes */,
 				9D27639A1D56651D00321177 /* Snippets.h */,
+				9D2763DA1D5A113B00321177 /* Extensions */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1949,8 +1956,19 @@
 				9D0415451D50C5F500EED4B3 /* Backlight.hpp */,
 				9D27639C1D57484D00321177 /* Colors.cpp */,
 				9D27639D1D57484D00321177 /* Colors.hpp */,
+				9D2763D41D57B93C00321177 /* HUD.cpp */,
+				9D2763D51D57B93C00321177 /* HUD.hpp */,
 			);
 			name = Environment;
+			sourceTree = "<group>";
+		};
+		9D2763DA1D5A113B00321177 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9D2763D71D5A113600321177 /* ColorSprite.cpp */,
+				9D2763D81D5A113600321177 /* ColorSprite.hpp */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		9DA274B21D410E02000910C2 /* Scenes */ = {
@@ -2090,6 +2108,7 @@
 				15C157471683159E00D239F2 /* b2Collision.cpp in Sources */,
 				15C157481683159E00D239F2 /* b2Distance.cpp in Sources */,
 				15C157491683159E00D239F2 /* b2DynamicTree.cpp in Sources */,
+				9D2763D61D57B93C00321177 /* HUD.cpp in Sources */,
 				15C1574A1683159E00D239F2 /* b2TimeOfImpact.cpp in Sources */,
 				15C1574B1683159E00D239F2 /* b2ChainShape.cpp in Sources */,
 				15C1574C1683159E00D239F2 /* b2CircleShape.cpp in Sources */,
@@ -2138,6 +2157,7 @@
 				37C62CED18E157C300D16FC4 /* UILayoutDefine.cpp in Sources */,
 				15C157661683159E00D239F2 /* b2GearJoint.cpp in Sources */,
 				37C62D0618E157C300D16FC4 /* LabelBMFontReader.cpp in Sources */,
+				9D2763D91D5A113600321177 /* ColorSprite.cpp in Sources */,
 				37C62CD618E157C300D16FC4 /* CCArmature.cpp in Sources */,
 				37C62CEE18E157C300D16FC4 /* UILayoutParameter.cpp in Sources */,
 				37C62CE418E157C300D16FC4 /* CCTweenFunction.cpp in Sources */,

@@ -14,6 +14,7 @@
 class LevelCompleteDelegate {
 public:
     virtual void levelComplete() { CCLOG("Level Complete"); }
+    virtual void destroyedBlock() { CCLOG("Destroyed block"); }
 };
 
 class Level : public cocos2d::CCNode, public BlockStatesDelegate
@@ -22,6 +23,7 @@ public:
     static float levelWidth;
     static float levelHeigth;
     static float padding;
+    static float topBorder;
     
     static void setupDefaults();
     static Level* createSimpleLevel(int columnsNumber, int rowsNumber, ccColor3B color);

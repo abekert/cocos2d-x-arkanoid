@@ -37,6 +37,7 @@ public:
     typedef enum {
         StateActive,
         StateInactive,
+        StateDestroyedPlayingAnimation,
         StateDestroyed
     } State;
     State getState() { return state; }
@@ -54,7 +55,4 @@ private:
         state = newState;
         if (delegate) delegate->blockChangedState(this);
     }
-    
-    static CCSprite* createBlankSprite(const ccColor4B& color, CCSize size);
-    
 };

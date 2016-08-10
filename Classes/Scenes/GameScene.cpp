@@ -39,25 +39,22 @@ bool GameScene::init()
     //////////////////////////////
     // 1. super init first
     if ( !CCLayerColor::initWithColor(ccc4(bc.r, bc.g, bc.b, 255)))
-//        if ( !CCLayerColor::initWithColor(ccc4(0, 0, 0, 0)))
-//    if (!CCLayerRGBA::init())
     {
         return false;
     }
         
-    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, INT_MIN + 1, true);
+    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
     
     float duration = 0.25f;
     
     setColor(colorPalette->background);
-//    this->setBlendFunc((ccBlendFunc) { GL_ONE, GL_ONE_MINUS_SRC_ALPHA });
-//    this->setColor(bc);
     
     setupLevel(duration);
     setupRaquet();
     addBall();
     setupBacklight();
     setupPhysics();
+    setupHUD();
     
     scheduleUpdate();
     startGame(duration);
@@ -67,18 +64,21 @@ bool GameScene::init()
 
 void GameScene::setupLevel(float presentationDuration) {
     Level::setupDefaults();
-    level = Level::createSimpleLevel(8, 8, colorPalette->blocks);
+    level = Level::createSimpleLevel(2, 2, colorPalette->blocks);
     level->delegate = this;
-//        LevelPresenter::presentLevelMoveStyle(level, this, 1, 10);
     auto presenter = new LevelPresenter;
+//    presenter->presentLevelMoveStyle(level, this, presentationDuration, 10);
     presenter->presentLevelLineByLine(level, this, presentationDuration, 10);
+//    level->setPositionY(level->getPositionY() - 50);
 }
 
 void GameScene::setupRaquet() {
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
-    raquet = Raquet::create(250, 20, colorPalette->racquet);
+    float width = 0.22 * visibleSize.width;
+    float height = 0.075 * width;
+    raquet = Raquet::create(width, height, colorPalette->racquet);
     this->addChild(raquet, 10);
     raquet->setY(visibleSize.height * 0.12f);
     raquet->setPosition(ccp(origin.x + visibleSize.width / 2, origin.y + raquet->getY()));
@@ -88,8 +88,9 @@ void GameScene::setupRaquet() {
 
 void GameScene::addBall() {
     CCPoint position = raquet->getPosition();
-    position.y += 50;
-    ball = Ball::create(12, colorPalette->ball);
+    auto radius = raquet->getContentSize().height * 0.6f;
+    position.y += 4 * radius;
+    ball = Ball::create(radius, colorPalette->ball);
     ball->setPosition(position);
     this->addChild(ball, 10);
 }
@@ -97,6 +98,12 @@ void GameScene::addBall() {
 void GameScene::setupPhysics() {
     physics = new GamePhysics(level, raquet, ball);
     physics->delegate = this;
+}
+
+void GameScene::setupHUD() {
+    hud = HUD::create();
+    hud->delegate = this;
+    this->addChild(hud, 100);
 }
 
 void GameScene::setupBacklight() {
@@ -109,24 +116,20 @@ GameScene::~GameScene() {
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
 }
 
-void GameScene::menuCloseCallback(CCObject* pSender)
-{
-    auto block = level->getBlock(1, 2);
-    block->setVisible(!block->isVisible());
-}
+#pragma mark ----
 
-void GameScene::delayHideCallback(CCObject* pSender)
-{
-    auto block = level->getBlock(1, 2);
-    block->setVisible(1, false);
-}
+void GameScene::prepareToStartGame(float duration) {
+    paused = true;
+    
+    // Colorize background
+    auto color = colorPalette->background;
+    auto colorize = CCTintTo::create(duration, color.r, color.g, color.b);
+    this->runAction(colorize);
 
-void GameScene::testAction(CCObject* pSender)
-{
-    auto block = level->getBlock(1, 2);
-    auto rotate = CCRotateBy::create(1, 180);
-    block->runAction(rotate);
-    CCLog("rotate");
+    // Move raquet to start position
+    raquet->moveToStartPosition();
+    
+    // Move ball to start position
 }
 
 void GameScene::startGame(float delay) {
@@ -170,13 +173,15 @@ void GameScene::ccTouchCancelled(cocos2d::CCTouch *touch, cocos2d::CCEvent *even
 //    printf("ccTouchCancelled");
 }
 
+
 #pragma mark Update
 
 void GameScene::update(float dt) {
-    if (physics) {
+    if (physics && !paused) {
         physics->update(dt);
     }
 }
+
 
 #pragma mark Physics Delegate
 
@@ -186,18 +191,46 @@ void GameScene::ballTouchedBottomEdge() {
     }
 }
 
+
 #pragma mark Level Complete Delegate
 
+void GameScene::destroyedBlock() {
+    score += 1;
+    if (hud) {
+        hud->incrementScores();
+    }
+}
+
 void GameScene::levelComplete() {
-    CCLOG("Completed!");
-    
     if (!backlight) {
         return;
     }
+
+    auto color = colorPalette->backlightSuccess;
+    auto colorize = CCTintTo::create(0.5f, color.r, color.g, color.b);
+    this->runAction(colorize);
+
+//    backlight->fadeIn(3);
+//    backlight->setColor(2, colorPalette->backlightSuccess);
     
-    backlight->fadeIn(3);
-    backlight->setColor(2, colorPalette->backlightSuccess);
+    paused = true;
+    raquetMovingEnabled = false;
 }
 
 
+#pragma mark HUD Delegate
+
+void GameScene::gamePaused() {
+    paused = true;
+    raquetMovingEnabled = false;
+}
+
+void GameScene::gameResumed() {
+    paused = false;
+    raquetMovingEnabled = true;
+}
+
+void GameScene::exitGame() {
+    CCDirector::sharedDirector()->popScene();
+}
 

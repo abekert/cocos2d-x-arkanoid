@@ -21,6 +21,7 @@ public:
     
     void handleTouchAtPosition(CCPoint point);
     void resetMoving() { desiredPoint = getPosition(); }
+    void moveToStartPosition();
     
     float speedX = 2000;
     
@@ -42,8 +43,6 @@ private:
     float xMin = 0;
     float xMax = 1000;
     void fitPositionIntoBordersX();
-
-    static CCSprite* createBlankSprite(const ccColor4B& color, CCSize size);
     
     CCSize size;
 

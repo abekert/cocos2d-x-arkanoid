@@ -8,6 +8,8 @@
 
 #include "Raquet.hpp"
 
+#include "../../Extensions/ColorSprite.hpp"
+
 Raquet* Raquet::create(float width, float height) {
     return create(width, height, ccWHITE);
 }
@@ -18,7 +20,7 @@ Raquet* Raquet::create(float width, float height, ccColor3B color) {
         raquet->autorelease();
         auto color4b = ccc4(color.r, color.g, color.b, 255);
         auto size = CCSize(width, height);
-        raquet->sprite = Raquet::createBlankSprite(color4b, size);
+        raquet->sprite = ColorSprite::create(color4b, size);
         raquet->addChild(raquet->sprite);
         raquet->size = size;
         raquet->updateBordersX();
@@ -30,28 +32,6 @@ Raquet* Raquet::create(float width, float height, ccColor3B color) {
     delete raquet;
     raquet = NULL;
     return NULL;
-}
-
-
-CCSprite* Raquet::createBlankSprite(const ccColor4B& color, CCSize size)
-{
-    GLubyte *buffer = (GLubyte *)malloc(sizeof(GLubyte)*4);
-    buffer[0] = color.r;
-    buffer[1] = color.g;
-    buffer[2] = color.b;
-    buffer[3] = color.a;
-    
-    auto tex = new CCTexture2D();
-    tex->initWithData(buffer, kCCTexture2DPixelFormat_RGBA8888, 1, 1, size);
-    
-    auto sprite = CCSprite::create();
-    sprite->setTexture(tex);
-    sprite->setTextureRect(CCRect(0, 0, size.width, size.height));
-    
-    tex->release();
-    free(buffer);
-    
-    return sprite;
 }
 
 Raquet::~Raquet() {
@@ -100,4 +80,8 @@ void Raquet::fitPositionIntoBordersX() {
 float Raquet::reflectionForcePercentX(CCPoint ballPosition) {
     auto x = convertToNodeSpace(ballPosition).x;
     return clampf(2 * x / size.width, -1, 1);
+}
+
+void Raquet::moveToStartPosition() {
+    desiredPoint.x = (xMin + xMax) / 2;
 }

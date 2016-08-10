@@ -11,52 +11,66 @@
 #include "cocos2d.h"
 #include "../Gameplay/GamePhysics.hpp"
 #include "../Gameplay/Models/Level.hpp"
+#include "../Gameplay/Environment/HUD.hpp"
 
 class Raquet;
 class Ball;
 class Colors;
 class Backlight;
 
-class GameScene : public cocos2d::CCLayerColor, public GamePhysicsDelegate, public LevelCompleteDelegate
+class GameScene : public cocos2d::CCLayerColor, public GamePhysicsDelegate, public LevelCompleteDelegate, public HudDelegate
 {
 public:
-    // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();
     
-    // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::CCScene* scene();
-    
-    // a selector callback
-    void testAction(CCObject* pSender);
-    void menuCloseCallback(CCObject* pSender);
-    void delayHideCallback(CCObject* pSender);
-    
-    // implement the "static node()" method manually
+        
     CREATE_FUNC(GameScene);
     ~GameScene();
+    
+    typedef enum {
+        StatePresentingLevel,
+        StateRunning,
+        StatePaused,
+        StateScored
+    } GameStates;
 private:
     Level *level;
     Raquet *raquet;
     Ball *ball;
     GamePhysics *physics;
+    HUD *hud;
     
     Colors *colorPalette;
     Backlight *backlight;
+    
+    bool paused;
+    
+    int score;
+    CCLabelTTF *scoreLabel;
     
     void setupLevel(float presentationDuration);
     void setupRaquet();
     void addBall();
     void setupPhysics();
+    void setupHUD();
     
     void setupBacklight();
     
+    void prepareToStartGame(float duration);
     void startGame(float delay);
     void startGame();
 
     void update(float dt);
     
     virtual void ballTouchedBottomEdge();
-    void levelComplete();
+    
+    virtual void levelComplete();
+    virtual void destroyedBlock();
+    
+    virtual void gamePaused();
+    virtual void gameResumed();
+    virtual void exitGame();
 
     bool raquetMovingEnabled;
     

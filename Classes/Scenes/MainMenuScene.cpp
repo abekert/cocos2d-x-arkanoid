@@ -245,9 +245,10 @@ void MainMenuScene::toGameScene()
 {
     //get the game scene and run it.
     auto scene = GameScene::scene();
-    auto transition = CCTransitionFlipX::create(0.2f, scene);
+//    auto transition = CCTransitionFlipX::create(0.1f, scene);
 //    CCDirector::sharedDirector()
-    CCDirector::sharedDirector()->replaceScene(transition);
+//    CCDirector::sharedDirector()->replaceScene(transition);
+    CCDirector::sharedDirector()->pushScene(scene);
 }
 
 bool MainMenuScene::ccTouchBegan(cocos2d::CCTouch *touch, cocos2d::CCEvent *event) {
