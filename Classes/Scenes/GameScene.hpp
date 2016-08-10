@@ -34,6 +34,8 @@ public:
         StatePaused,
         StateScored
     } GameStates;
+    GameStates getState() { return gameState; }
+    
 private:
     Level *level;
     Raquet *raquet;
@@ -45,9 +47,10 @@ private:
     Backlight *backlight;
     
     bool paused;
-    
-    int score;
-    CCLabelTTF *scoreLabel;
+    GameStates gameState;
+    int scores;
+    int lives;
+    int levelNumber;
     
     void setupLevel(float presentationDuration);
     void setupRaquet();
@@ -57,9 +60,10 @@ private:
     
     void setupBacklight();
     
-    void prepareToStartGame(float duration);
+    void prepareToStartGame();
     void startGame(float delay);
     void startGame();
+    void gameOver();
 
     void update(float dt);
     

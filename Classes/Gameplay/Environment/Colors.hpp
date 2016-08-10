@@ -20,6 +20,8 @@ public:
     cocos2d::ccColor3B backlightFail;
     cocos2d::ccColor3B backlightSuccess;
     
+    cocos2d::ccColor3B topPanelColor;
+    
     /// http://flatcolors.net/palette/534-flat-hip#
     static Colors * flatAndHipPalette();
 };

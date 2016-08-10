@@ -266,6 +266,7 @@
 		9DA274B51D4244FE000910C2 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA274B31D4244FE000910C2 /* GameScene.cpp */; };
 		9DA274BA1D44F418000910C2 /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA274B81D44F418000910C2 /* Level.cpp */; };
 		9DA274BD1D44F485000910C2 /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DA274BB1D44F485000910C2 /* Block.cpp */; };
+		9DF5795C1D5BD5A600A616E2 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DF5795B1D5BD5A600A616E2 /* pause.png */; };
 		9DF604161D47A514006AD44A /* LevelPresenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DF604141D47A514006AD44A /* LevelPresenter.cpp */; };
 		9DF604191D4B9C58006AD44A /* Raquet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9DF604171D4B9C58006AD44A /* Raquet.cpp */; };
 /* End PBXBuildFile section */
@@ -818,6 +819,7 @@
 		9DA274B91D44F418000910C2 /* Level.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Level.hpp; path = ../Classes/Gameplay/Models/Level.hpp; sourceTree = "<group>"; };
 		9DA274BB1D44F485000910C2 /* Block.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Block.cpp; path = ../Classes/Gameplay/Models/Block.cpp; sourceTree = "<group>"; };
 		9DA274BC1D44F485000910C2 /* Block.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Block.hpp; path = ../Classes/Gameplay/Models/Block.hpp; sourceTree = "<group>"; };
+		9DF5795B1D5BD5A600A616E2 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		9DF604141D47A514006AD44A /* LevelPresenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelPresenter.cpp; path = ../Classes/Gameplay/Models/LevelPresenter.cpp; sourceTree = "<group>"; };
 		9DF604151D47A514006AD44A /* LevelPresenter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LevelPresenter.hpp; path = ../Classes/Gameplay/Models/LevelPresenter.hpp; sourceTree = "<group>"; };
 		9DF604171D4B9C58006AD44A /* Raquet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Raquet.cpp; path = ../Classes/Gameplay/Models/Raquet.cpp; sourceTree = "<group>"; };
@@ -850,12 +852,12 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9DA274B21D410E02000910C2 /* Scenes */,
 				9DA274B61D44F3B7000910C2 /* Gameplay */,
+				9D2763DA1D5A113B00321177 /* Extensions */,
 				1AFAF8C616D3886000DB1158 /* AppDelegate.cpp */,
 				1AFAF8C716D3886000DB1158 /* AppDelegate.h */,
-				9DA274B21D410E02000910C2 /* Scenes */,
 				9D27639A1D56651D00321177 /* Snippets.h */,
-				9D2763DA1D5A113B00321177 /* Extensions */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1928,6 +1930,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9DF5795B1D5BD5A600A616E2 /* pause.png */,
 				9D0415421D50C3A700EED4B3 /* loose-bottom.png */,
 				1AFAF8C016D3884900DB1158 /* CloseNormal.png */,
 				1AFAF8C116D3884900DB1158 /* CloseSelected.png */,
@@ -2086,6 +2089,7 @@
 				41BC70E715BF81A5006A0A6C /* Icon.icns in Resources */,
 				15C157DA168315B300D239F2 /* CMakeLists.txt in Resources */,
 				1AFAF8C316D3884900DB1158 /* CloseNormal.png in Resources */,
+				9DF5795C1D5BD5A600A616E2 /* pause.png in Resources */,
 				1AFAF8C416D3884900DB1158 /* CloseSelected.png in Resources */,
 				1AFAF8C516D3884900DB1158 /* HelloWorld.png in Resources */,
 				9D0415431D50C3A800EED4B3 /* loose-bottom.png in Resources */,

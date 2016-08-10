@@ -20,5 +20,7 @@ Colors * Colors::flatAndHipPalette() {
     palette->backlightFail = ccc3(176, 95, 109);
     palette->backlightSuccess = ccc3(71, 179, 157);
     
+    palette->topPanelColor = palette->ball;
+    
     return palette;
 }

@@ -49,7 +49,10 @@ private:
     CCSize size;
     State state;
     
-    void setStateDestroyed() { setState(StateDestroyed); }
+    void setStateDestroyed() {
+        setState(StateDestroyed);
+        sprite->removeFromParent();
+    }
     void setState(State newState) {
         if (state == newState) return;
         state = newState;
