@@ -22,6 +22,12 @@ public:
     
     cocos2d::ccColor3B topPanelColor;
     
-    /// http://flatcolors.net/palette/534-flat-hip#
+    /// http://flatcolors.net/palette/534-flat-hip
     static Colors * flatAndHipPalette();
+    
+    /// http://flatcolors.net/palette/573-that-retro-flat
+    static Colors * retroFlatPalette();
+    
+    /// http://flatcolors.net/palette/460-iam-truckburger
+    static Colors * truckBurgerPalette();
 };
