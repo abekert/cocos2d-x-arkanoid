@@ -33,6 +33,7 @@ Colors * ColorsManager::getCurrentColorsPalette() {
 
 Colors * ColorsManager::nextColorsPalette() {
     currentPaletteIndex += 1;
+    CCUserDefault::sharedUserDefault()->setIntegerForKey(paletteIndexKey, currentPaletteIndex);
     return getCurrentColorsPalette();
 }
 
