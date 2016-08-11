@@ -10,6 +10,8 @@
 
 #include "../../Extensions/ColorSprite.hpp"
 
+static const int colorizeActionTag = 1;
+
 Raquet* Raquet::create(float width, float height) {
     return create(width, height, ccWHITE);
 }
@@ -85,3 +87,17 @@ float Raquet::reflectionForcePercentX(CCPoint ballPosition) {
 void Raquet::moveToStartPosition() {
     desiredPoint.x = (xMin + xMax) / 2;
 }
+
+#pragma mark Color
+
+void Raquet::setColor(ccColor3B color) {
+    sprite->setColor(color);
+}
+
+void Raquet::setColor(ccColor3B color, float duration) {
+    auto colorize = CCTintTo::create(duration, color.r, color.g, color.b);
+    colorize->setTag(colorizeActionTag);
+    sprite->stopActionByTag(colorizeActionTag);
+    sprite->runAction(colorize);
+}
+

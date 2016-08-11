@@ -32,3 +32,8 @@ CCDrawNode* Ball::circleOfRadius(float radius, ccColor3B color) {
     return draw;
 }
 
+void Ball::setColor(ccColor3B color) {
+    sprite->clear();
+    sprite->drawDot(ccp(0, 0), radius, ccc4FFromccc3B(color));
+}
+

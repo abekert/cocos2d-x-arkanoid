@@ -36,7 +36,7 @@ CCScene* GameScene::scene()
 // on "init" you need to initialize your instance
 bool GameScene::init()
 {
-    colorPalette = Colors::flatAndHipPalette();
+    colorPalette = ColorsManager::sharedManager()->getCurrentColorsPalette();
     auto bc = colorPalette->background;
     //////////////////////////////
     // 1. super init first
@@ -142,6 +142,7 @@ void GameScene::prepareToStartGame() {
     
     // Present Level Number
     hud->presentLevel(levelNumber, duration);
+    hud->setTopColor(colorPalette->topPanelColor, duration);
     
     prepareBallAndRaquet(duration * 0.5f);
     startGame(duration);
@@ -153,6 +154,7 @@ void GameScene::prepareBallAndRaquet(float moveDuration) {
 
     // Move raquet to start position
     raquet->moveToStartPosition();
+    raquet->setColor(colorPalette->racquet, moveDuration);
     
     // Move ball to start position
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
@@ -160,6 +162,7 @@ void GameScene::prepareBallAndRaquet(float moveDuration) {
     float ballX = visibleSize.width * 0.5f;
     auto moveBall = CCMoveTo::create(moveDuration, ccp(ballX, ballY));
     ball->runAction(CCEaseSineInOut::create(moveBall));
+    ball->setColor(colorPalette->ball);
 }
 
 void GameScene::startGame(float delay) {
@@ -268,6 +271,7 @@ void GameScene::levelComplete() {
     auto colorize = CCTintTo::create(0.5f, color.r, color.g, color.b);
     
     levelNumber += 1;
+    colorPalette = ColorsManager::sharedManager()->nextColorsPalette();
     auto startNextLevel = CCCallFunc::create(this, callfunc_selector(GameScene::prepareToStartGame));
     
     this->runAction(CCSequence::createWithTwoActions(colorize, startNextLevel));

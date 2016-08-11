@@ -9,6 +9,7 @@
 #include "HUD.hpp"
 
 static const int fadeTag = 1;
+static const int colorizeActionTag = 2;
 
 static const int halfBlackOpacity = 120;
 
@@ -82,6 +83,20 @@ void HUD::setTopColor(cocos2d::ccColor3B color) {
     scoresLabel->setColor(color);
     livesLabel->setColor(color);
     pauseButton->setColor(color);
+}
+
+void HUD::setTopColor(cocos2d::ccColor3B color, float duration) {
+    
+    auto colorize = CCTintTo::create(duration, color.r, color.g, color.b);
+    colorize->setTag(colorizeActionTag);
+
+    scoresLabel->stopActionByTag(colorizeActionTag);
+    livesLabel->stopActionByTag(colorizeActionTag);
+    pauseButton->stopActionByTag(colorizeActionTag);
+
+    scoresLabel->runAction((CCAction *)colorize->copy());
+    livesLabel->runAction((CCAction *)colorize->copy());
+    pauseButton->runAction(colorize);
 }
 
 HUD::~HUD() {

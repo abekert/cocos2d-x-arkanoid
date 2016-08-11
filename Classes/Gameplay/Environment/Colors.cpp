@@ -10,6 +10,34 @@
 
 USING_NS_CC;
 
+static const char *paletteIndexKey = "colorPaletteIndex";
+
+static ColorsManager *_sharedManager = NULL;
+
+ColorsManager * ColorsManager::sharedManager() {
+    if (!_sharedManager)
+    {
+        _sharedManager = new ColorsManager();
+    }
+    
+    return _sharedManager;
+}
+
+ColorsManager::ColorsManager() {
+    currentPaletteIndex = CCUserDefault::sharedUserDefault()->getIntegerForKey(paletteIndexKey, 0);
+}
+
+Colors * ColorsManager::getCurrentColorsPalette() {
+    return Colors::colorsPaletteByIndex(currentPaletteIndex);
+}
+
+Colors * ColorsManager::nextColorsPalette() {
+    currentPaletteIndex += 1;
+    return getCurrentColorsPalette();
+}
+
+#pragma mark Palettes
+
 Colors * Colors::flatAndHipPalette() {
     auto palette = new Colors();
     palette->background = ccc3(70, 36, 70);
@@ -53,4 +81,23 @@ Colors * Colors::truckBurgerPalette() {
     palette->topPanelColor = ccc3(242, 248, 234);
     
     return palette;
+}
+
+int Colors::getColorsPalettesCount() {
+    return 3;
+}
+
+Colors * Colors::colorsPaletteByIndex(int index) {
+    index = index % getColorsPalettesCount();
+    
+    switch (index) {
+        case 0: return flatAndHipPalette();
+        case 1: return retroFlatPalette();
+        case 2: return truckBurgerPalette();
+            
+        default:
+            CCLOGERROR("Wrong palette index: %d", index);
+            return NULL;
+    }
+    
 }

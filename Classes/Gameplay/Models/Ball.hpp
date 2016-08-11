@@ -20,6 +20,8 @@ public:
     
     float getRadius() { return radius; }
     
+    void setColor(ccColor3B color);
+    
     float speed;
 private:
     CCDrawNode *sprite;

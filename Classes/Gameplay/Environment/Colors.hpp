@@ -30,4 +30,19 @@ public:
     
     /// http://flatcolors.net/palette/460-iam-truckburger
     static Colors * truckBurgerPalette();
+    
+    static Colors * colorsPaletteByIndex(int index);
+    static int getColorsPalettesCount();
+};
+
+class ColorsManager {
+public:
+    static ColorsManager * sharedManager();
+    
+    Colors * getCurrentColorsPalette();
+    Colors * nextColorsPalette();
+private:
+    ColorsManager();
+    
+    int currentPaletteIndex;
 };

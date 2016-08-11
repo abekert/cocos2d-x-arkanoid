@@ -30,6 +30,9 @@ public:
     
     CCSize getContentSize() { return size; };
     
+    void setColor(ccColor3B color);
+    void setColor(ccColor3B color, float duration);
+
     void updateBordersX();
     
     /// A value in range [-1, 1]

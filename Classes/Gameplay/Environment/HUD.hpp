@@ -38,6 +38,7 @@ public:
     void presentGameOver();
     
     void setTopColor(cocos2d::ccColor3B color);
+    void setTopColor(cocos2d::ccColor3B color, float duration);
     
     HudDelegate *delegate;
     
