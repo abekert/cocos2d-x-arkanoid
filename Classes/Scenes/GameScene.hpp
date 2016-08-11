@@ -61,6 +61,7 @@ private:
     void setupBacklight();
     
     void prepareToStartGame();
+    void prepareBallAndRaquet(float moveDuration);
     void startGame(float delay);
     void startGame();
     void gameOver();

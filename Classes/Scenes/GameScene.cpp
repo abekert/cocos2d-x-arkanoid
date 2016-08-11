@@ -124,28 +124,15 @@ GameScene::~GameScene() {
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
 }
 
-#pragma mark ----
+#pragma mark -----
 
 void GameScene::prepareToStartGame() {
     auto duration = 2;
-    paused = true;
-    raquetMovingEnabled = false;
-    
-    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
 
     // Colorize background
     auto color = colorPalette->background;
     auto colorize = CCTintTo::create(duration, color.r, color.g, color.b);
     this->runAction(colorize);
-
-    // Move raquet to start position
-    raquet->moveToStartPosition();
-    
-    // Move ball to start position
-    float ballY = raquet->getY() + ball->getRadius() * 4;
-    float ballX = visibleSize.width * 0.5f;
-    auto moveBall = CCMoveTo::create(duration * 0.5f, ccp(ballX, ballY));
-    ball->runAction(moveBall);
     
     // Setup Level
     setupLevel(duration * 0.5f);
@@ -156,7 +143,23 @@ void GameScene::prepareToStartGame() {
     // Present Level Number
     hud->presentLevel(levelNumber, duration);
     
+    prepareBallAndRaquet(duration * 0.5f);
     startGame(duration);
+}
+
+void GameScene::prepareBallAndRaquet(float moveDuration) {
+    paused = true;
+    raquetMovingEnabled = false;
+
+    // Move raquet to start position
+    raquet->moveToStartPosition();
+    
+    // Move ball to start position
+    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    float ballY = raquet->getY() + ball->getRadius() * 4;
+    float ballX = visibleSize.width * 0.5f;
+    auto moveBall = CCMoveTo::create(moveDuration, ccp(ballX, ballY));
+    ball->runAction(CCEaseSineInOut::create(moveBall));
 }
 
 void GameScene::startGame(float delay) {
@@ -241,6 +244,9 @@ void GameScene::ballTouchedBottomEdge() {
     if (backlight) {
         backlight->blink(1);
     }
+    
+    prepareBallAndRaquet(1);
+    startGame(1.1f);
 }
 
 
