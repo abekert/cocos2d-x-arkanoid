@@ -10,6 +10,7 @@
 #include "GameScene.hpp"
 
 #include "../Gameplay/Environment/Colors.hpp"
+#include "../Gameplay/Environment/SoundManager.hpp"
 
 USING_NS_CC;
 
@@ -34,7 +35,7 @@ bool MainMenuScene::init()
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
     
     // Menu
-    CCMenu* menu = CCMenu::create();
+    menu = CCMenu::create();
     menu->setPosition(CCPointZero);
     this->addChild(menu, 1);
 
@@ -73,6 +74,8 @@ bool MainMenuScene::init()
     startButton->setPosition(buttonPosition);
     menu->addChild(startButton);
     
+    addSoundButton();
+    
     return true;
 }
 
@@ -82,6 +85,7 @@ void MainMenuScene::onEnter() {
     auto colorPalette = ColorsManager::sharedManager()->getCurrentColorsPalette();
     setColor(colorPalette->background);
     startButton->setColor(colorPalette->topPanelColor);
+    soundButton->setColor(colorPalette->topPanelColor);
     arkanoidLabel->setColor(colorPalette->topPanelColor);
     creditsLabel->setColor(colorPalette->topPanelColor);
     
@@ -98,7 +102,7 @@ void MainMenuScene::animateLabelsAppear() {
     arkanoidLabel->setString("");
     creditsLabel->setOpacity(0);
     
-    auto wait = CCDelayTime::create(0.75f);
+    auto wait = CCDelayTime::create(0.3f);
     char *a = "A";
     char *r = "R";
     char *k = "K";
@@ -116,7 +120,7 @@ void MainMenuScene::animateLabelsAppear() {
     auto appendD = CCCallFuncND::create(this, callfuncND_selector(MainMenuScene::addLetterToLabel), d);
     auto showCredits = CCCallFunc::create(this, callfunc_selector(MainMenuScene::showCredits));
     
-    auto sequence = CCSequence::create((CCDelayTime *)wait->copy(), (CCAction *)appendA->copy(), (CCDelayTime *)wait->copy(), appendR, (CCDelayTime *)wait->copy(), appendK, (CCDelayTime *)wait->copy(), appendA, (CCDelayTime *)wait->copy(), appendN, (CCDelayTime *)wait->copy(), appendO, (CCDelayTime *)wait->copy(), appendI, (CCDelayTime *)wait->copy(), appendD, showCredits, NULL);
+    auto sequence = CCSequence::create((CCDelayTime *)wait->copy(), (CCAction *)appendA->copy(), (CCDelayTime *)wait->copy(), appendR, (CCDelayTime *)wait->copy(), appendK, (CCDelayTime *)wait->copy(), appendA, (CCDelayTime *)wait->copy(), appendN, (CCDelayTime *)wait->copy(), appendO, (CCDelayTime *)wait->copy(), appendI, (CCDelayTime *)wait->copy(), appendD, (CCDelayTime *)wait->copy(), showCredits, NULL);
     
     arkanoidLabel->runAction(sequence);
 }
@@ -156,4 +160,45 @@ void MainMenuScene::toGameScene() {
 //    CCDirector::sharedDirector()
 //    CCDirector::sharedDirector()->replaceScene(transition);
     CCDirector::sharedDirector()->pushScene(transition);
+}
+
+#pragma mark Sound
+
+#define soundButtonImage(soundEnabled) (soundEnabled ? "sound-on.png" : "sound-off.png")
+
+void MainMenuScene::addSoundButton() {
+    CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+    CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
+
+    bool soundEnabled = SoundManager::sharedManager()->getSoundEnabled();
+
+    soundButton = CCMenuItemImage::create(soundButtonImage(soundEnabled),
+                                          soundButtonImage(soundEnabled),
+                                          this,
+                                          menu_selector(MainMenuScene::soundButtonCallback));
+    CCSize buttonSize = soundButton->getContentSize();
+    float itemHeight = visibleSize.height * 0.1f;
+    float scale = itemHeight / buttonSize.height;
+    soundButton->setScale(scale);
+    buttonSize = buttonSize * scale;
+    
+    CCPoint buttonPosition = ccp(origin.x + visibleSize.width - buttonSize.width *0.75f, origin.y + buttonSize.height * 0.75f);
+    soundButton->setPosition(buttonPosition);
+    menu->addChild(soundButton);
+}
+
+void MainMenuScene::soundButtonCallback(CCObject* sender) {
+    bool soundEnabled = SoundManager::sharedManager()->getSoundEnabled();
+    soundEnabled = !soundEnabled;
+    SoundManager::sharedManager()->setSoundEnabled(soundEnabled);
+    
+    if (soundEnabled) {
+        SoundManager::sharedManager()->playEnableSound();
+    }
+    
+    soundButton->initWithNormalImage(soundButtonImage(soundEnabled),
+                                     soundButtonImage(soundEnabled),
+                                     soundButtonImage(soundEnabled),
+                                     this,
+                                     menu_selector(MainMenuScene::soundButtonCallback));
 }

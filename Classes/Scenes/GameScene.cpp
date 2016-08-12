@@ -13,6 +13,7 @@
 
 #include "../Gameplay/Environment/Backlight.hpp"
 #include "../Gameplay/Environment/Colors.hpp"
+#include "../Gameplay/Environment/SoundManager.hpp"
 
 USING_NS_CC;
 
@@ -59,6 +60,8 @@ bool GameScene::init()
     
     scheduleUpdate();
     prepareToStartGame();
+    
+    SoundManager::sharedManager()->playGameStart();
     
     return true;
 }
@@ -180,6 +183,8 @@ void GameScene::startGame() {
 }
 
 void GameScene::gameOver() {
+    SoundManager::sharedManager()->playGameOver();
+
     if (backlight) {
         backlight->fadeIn(0.25f);
     }
@@ -244,6 +249,8 @@ void GameScene::ballTouchedBottomEdge() {
         return;
     }
     
+    SoundManager::sharedManager()->playBallTouchedBottom();
+
     if (backlight) {
         backlight->blink(1);
     }
@@ -266,6 +273,8 @@ void GameScene::levelComplete() {
     if (!backlight) {
         return;
     }
+    
+    SoundManager::sharedManager()->playLevelComplete();
 
     auto color = colorPalette->backlightSuccess;
     auto colorize = CCTintTo::create(0.5f, color.r, color.g, color.b);

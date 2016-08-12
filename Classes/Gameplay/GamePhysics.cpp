@@ -13,6 +13,7 @@
 #include "Models/Ball.hpp"
 
 #include "../Snippets.h"
+#include "Environment/SoundManager.hpp"
 
 #define SCALE_RATIO 32.0
 
@@ -126,6 +127,8 @@ void GamePhysics::BeginContact(b2Contact* contact) {
 
 void GamePhysics::beginContactBallAndBlock(b2Body *ballBody, Ball *ball, b2Body *blockBody, Block *block) {
     
+    SoundManager::sharedManager()->playBallTouchedBlock();
+    
     bool destroyed = block->takeDamage();
     if (!destroyed) {
         return;
@@ -146,6 +149,8 @@ void GamePhysics::beginContactBallAndBlock(b2Body *ballBody, Ball *ball, b2Body 
 }
 
 void GamePhysics::beginContactBallAndRaquet(b2Body *ballBody, Ball *ball, b2Body *raquetBody, Raquet *raquet) {
+    
+    SoundManager::sharedManager()->playBallTouchedRaquet();
 
     auto ballPosition = getWorldPosition(ball);
     auto raquetPosition = getWorldPosition(raquet);

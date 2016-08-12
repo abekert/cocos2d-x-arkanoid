@@ -18,10 +18,9 @@ public:
     
     CREATE_FUNC(MainMenuScene);
     
-
 private:
     void onEnter();
-
+    
     void startButtonCallback(CCObject* sender);
     void toGameScene();
     
@@ -29,7 +28,12 @@ private:
     void addLetterToLabel(CCNode* labelNode, void *letterPointer);
     void showCredits();
 
+    cocos2d::CCMenu *menu;
     cocos2d::CCMenuItemImage *startButton;
     cocos2d::CCLabelTTF *arkanoidLabel;
     cocos2d::CCLabelTTF *creditsLabel;
+    
+    void addSoundButton();
+    cocos2d::CCMenuItemImage *soundButton;
+    void soundButtonCallback(CCObject* sender);
 };
