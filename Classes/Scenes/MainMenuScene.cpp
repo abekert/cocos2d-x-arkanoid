@@ -201,4 +201,7 @@ void MainMenuScene::soundButtonCallback(CCObject* sender) {
                                      soundButtonImage(soundEnabled),
                                      this,
                                      menu_selector(MainMenuScene::soundButtonCallback));
+    
+    auto colorPalette = ColorsManager::sharedManager()->getCurrentColorsPalette();
+    soundButton->setColor(colorPalette->topPanelColor);
 }

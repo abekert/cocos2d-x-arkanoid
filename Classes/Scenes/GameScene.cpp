@@ -39,10 +39,7 @@ bool GameScene::init()
 {
     colorPalette = ColorsManager::sharedManager()->getCurrentColorsPalette();
     auto bc = colorPalette->background;
-    //////////////////////////////
-    // 1. super init first
-    if ( !CCLayerColor::initWithColor(ccc4(bc.r, bc.g, bc.b, 255)))
-    {
+    if (!CCLayerColor::initWithColor(ccc4(bc.r, bc.g, bc.b, 255))) {
         return false;
     }
     
@@ -71,12 +68,11 @@ void GameScene::setupLevel(float presentationDuration) {
     if (level) {
         level->removeFromParent();
     }
-    level = Level::createSimpleLevel(1 + levelNumber, 1 + levelNumber, colorPalette->blocks);
+    level = Level::createSimpleLevel(2 + levelNumber, 2 + levelNumber, colorPalette->blocks);
     level->delegate = this;
     auto presenter = new LevelPresenter;
 //    presenter->presentLevelMoveStyle(level, this, presentationDuration, 10);
     presenter->presentLevelLineByLine(level, this, presentationDuration, 10);
-//    level->setPositionY(level->getPositionY() - 50);
 }
 
 void GameScene::setupRaquet() {
